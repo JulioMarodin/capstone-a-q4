@@ -1,13 +1,13 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity('posts_types')
-export class PostsTypes {
+@Entity()
+export class PostLike {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ nullable: false, unique: true })
-  type: string;
+  @Column({ default: false })
+  like: boolean;
 
   @Column({ default: false })
-  visible: boolean;
+  deslike: boolean;
 }
