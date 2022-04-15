@@ -2,7 +2,6 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class PostLike {
-
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -11,5 +10,4 @@ export class PostLike {
 
   @Column({ default: false })
   deslike: boolean;
-
 }
