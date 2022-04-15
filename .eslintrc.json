@@ -11,6 +11,13 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "no-unused-vars": "off",
+    "indent":"off",
+    "quotes":"off",
+    "import/no-unresolved": "off",
+    "import/extensions":"off",
+    "max-len":"off",
+    "no-return-await":"off"
   }
 }
