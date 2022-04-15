@@ -1,6 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+} from 'typeorm';
+import { Users } from './User';
 
-@Entity()
+@Entity('tratativaAdmin')
 export class TratativaAdmin {
   @PrimaryGeneratedColumn()
     id: number;
@@ -16,4 +22,10 @@ export class TratativaAdmin {
 
   @Column({ nullable: false })
     endpoint: string;
+
+  @ManyToOne((type) => Users, (user) => user.id)
+  origin_user_id: Users;
+
+  @ManyToOne((type) => Users, (user) => user.id)
+  solved_by_id: Users;
 }

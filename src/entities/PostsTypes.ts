@@ -1,15 +1,13 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity('posts_types')
 export class PostsTypes {
-
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({nullable: false, unique: true})
+    @Column({ nullable: false, unique: true })
     type: string;
 
-    @Column({default: false})
+    @Column({ default: false })
     visible: boolean;
-
 }
