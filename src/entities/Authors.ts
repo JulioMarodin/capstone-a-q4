@@ -14,6 +14,6 @@ export class Authors {
   @Column()
   birthday: Date;
 
-  @Column()
+  @Column({ nullable: true })
   death_date: Date;
 }
