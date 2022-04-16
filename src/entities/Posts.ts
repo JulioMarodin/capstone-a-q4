@@ -8,10 +8,10 @@ export class Posts {
   @Column({ default: false })
   visible: boolean;
 
-  @Column({ type: "timestamp", default: () => "CURRRENT_TIMESTAMP" })
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   create_date: Date;
 
-  @Column({ type: "timestamp" })
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   update_date: Date;
 
   @Column()
