@@ -1,4 +1,4 @@
-// import { UpdateResult, DeleteResult } from 'typeorm';
+import { UpdateResult, DeleteResult } from 'typeorm';
 
 interface IAuthor {
     id:number;
@@ -17,8 +17,8 @@ interface IAuthorsRepo {
     saveAuthor:(author:IAuthor)=>void;
     findAuthor:(id:string)=>Promise<IAuthor>;
     findAuthors:()=>Promise<Array<IAuthor>>;
-    // updateAuthor:(dataAuthor:IdataUpdate, update:IdataUpdate)=>Promise<UpdateResult>;
-    // deleteAuthor:(dataAuthor:IdataUpdate)=>Promise<DeleteResult>;
+    updateAuthor:(dataAuthor:IdataUpdate, update:IdataUpdate)=>Promise<UpdateResult>;
+    deleteAuthor:(dataAuthor:IdataUpdate)=>Promise<DeleteResult>;
 }
 
 export { IAuthor, IdataUpdate, IAuthorsRepo };
