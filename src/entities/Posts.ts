@@ -7,9 +7,13 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from "typeorm";
+
+import { Books } from "./Books";
+
 import { PostsTypes } from "./PostsTypes";
 
 import { UserBookPosts } from './UserBookPosts';
+
 import { Users } from './Users';
 
 @Entity("posts")
@@ -38,11 +42,11 @@ export class Posts {
   @Column({ default: 0 })
   total_dislike: number;
 
-  @OneToMany(() => UserBookPosts, (userBookPosts) => userBookPosts.post_id)
-  book_id: UserBookPosts[];
-
   @ManyToOne((type) => Users, (user) => user.id)
   user_id: Users;
+
+  @ManyToOne(() => Books, (book) => book.posts)
+  book: Books;
 
   @ManyToOne((type) => PostsTypes, (post) => post.id)
   type_id: PostsTypes;

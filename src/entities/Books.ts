@@ -7,10 +7,8 @@ import {
   OneToMany,
 } from "typeorm";
 import { Genres } from "./Genres";
-import { PostLike } from "./PostLike";
 import { Publishers } from "./Publishers";
 import { Posts } from "./Posts";
-import { UserBookPosts } from './UserBookPosts';
 
 @Entity("books")
 export class Books {
@@ -41,8 +39,8 @@ export class Books {
   @Column()
   number_pages: number;
 
-  @OneToMany(() => PostLike, (postlike) => postlike.book)
-  postsAv: any;
+  @OneToMany(() => Posts, (post) => post.book)
+  posts: Posts[];
 
   @ManyToOne(() => Publishers, (publisher) => publisher.books)
   publisher: Publishers;
