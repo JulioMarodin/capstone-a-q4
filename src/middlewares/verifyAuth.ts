@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import usersRepository from "../repositories/Users"
+import usersRepository from "../repositories/Users";
 import { AsyncMid } from "../@types";
 
 dotenv.config();
