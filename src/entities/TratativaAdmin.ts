@@ -4,7 +4,7 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
 } from 'typeorm';
-import { Users } from './User';
+import { Users } from './Users';
 
 @Entity('tratativaAdmin')
 export class TratativaAdmin {

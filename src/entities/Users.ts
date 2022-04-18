@@ -29,6 +29,9 @@ export class Users {
   @Column({ length: 128 })
   city: string;
 
+  @Column({ default: false })
+  admin: boolean;
+
   @OneToMany((type) => TratativaAdmin, (tratativaAdmin) => tratativaAdmin.origin_user_id)
   tratativasAdmin: TratativaAdmin[];
 
