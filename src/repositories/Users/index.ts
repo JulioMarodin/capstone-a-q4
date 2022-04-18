@@ -1,5 +1,5 @@
 import { getRepository, Repository } from "typeorm";
-import { Users } from "../../entities/User";
+import { Users } from "../../entities/Users";
 import { IUsers, IdataUpdate, IusersRepo } from "./interfaces";
 
 class usersRepository implements IusersRepo {
