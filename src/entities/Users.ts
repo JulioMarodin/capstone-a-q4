@@ -4,7 +4,9 @@ import {
     Column,
     OneToMany,
 } from 'typeorm';
+
 import { TratativaAdmin } from './TratativaAdmin';
+import { UserBooks } from './UserBooks';
 
 @Entity('users')
 export class Users {
@@ -37,4 +39,7 @@ export class Users {
 
   @OneToMany(() => TratativaAdmin, (tratativaAdmin) => tratativaAdmin.solved_by_id)
   solvedTratativasAdmin: TratativaAdmin[];
+
+  @OneToMany(() => UserBooks, (userBooks) => userBooks.user_id)
+  userBooks: UserBooks[];
 }

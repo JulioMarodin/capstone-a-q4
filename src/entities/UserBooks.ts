@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+
+import { Users } from './Users';
 
 @Entity()
 export class UserBooks {
@@ -19,4 +26,7 @@ favorites: boolean;
 
 @Column()
 rating: number;
+
+@ManyToOne((type) => Users, (user) => user.id)
+user_id: Users;
 }
