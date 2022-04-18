@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    ManyToOne,
+} from "typeorm";
+import { Books } from "./Books";
 
 @Entity('publishers')
 export class Publishers {
@@ -7,4 +13,7 @@ export class Publishers {
 
     @Column({ nullable: false, unique: true, length: 128 })
     name: string;
+
+    @ManyToOne(() => Books, (book) => book.publisher)
+    books: Books;
 }

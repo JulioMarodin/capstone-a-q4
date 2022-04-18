@@ -1,4 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column, ManyToMany,
+  JoinTable,
+  ManyToOne,
+  OneToMany,
+} from "typeorm";
+import { Genres } from "./Genres";
+import { PostLike } from "./PostLike";
+import { Publishers } from "./Publishers";
+import { Posts } from "./Posts";
+import { UserBookPosts } from './UserBookPosts';
 
 @Entity("books")
 export class Books {
@@ -28,4 +40,14 @@ export class Books {
 
   @Column()
   number_pages: number;
+
+  @OneToMany(() => PostLike, (postlike) => postlike.book)
+  postsAv: any;
+
+  @ManyToOne(() => Publishers, (publisher) => publisher.books)
+  publisher: Publishers;
+
+  @ManyToMany(() => Genres)
+  @JoinTable()
+  genre: Genres;
 }
