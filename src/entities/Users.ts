@@ -7,26 +7,27 @@ import {
 
 import { TratativaAdmin } from './TratativaAdmin';
 import { UserBooks } from './UserBooks';
+import { PostsTypes } from './PostsTypes';
 
 @Entity('users')
 export class Users {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+    id: string;
 
   @Column({ length: 128 })
-  name: string;
+    name: string;
 
   @Column({ length: 128 })
-  email: string;
+    email: string;
 
   @Column()
-  password: string;
+    password: string;
 
   @Column()
-  biography: string;
+    biography: string;
 
   @Column()
-  birthday: Date;
+    birthday: Date;
 
   @Column({ length: 128 })
   city: string;
@@ -42,4 +43,7 @@ export class Users {
 
   @OneToMany(() => UserBooks, (userBooks) => userBooks.user_id)
   userBooks: UserBooks[];
+
+  @OneToMany(() => PostsTypes, (postsTypes) => postsTypes.user_id)
+  postsTypes: PostsTypes[];
 }
