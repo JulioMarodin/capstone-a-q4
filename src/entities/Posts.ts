@@ -4,7 +4,10 @@ import {
   Column,
   OneToMany,
   ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from "typeorm";
+import { PostsTypes } from "./PostsTypes";
 
 import { UserBookPosts } from './UserBookPosts';
 import { Users } from './Users';
@@ -17,10 +20,10 @@ export class Posts {
   @Column({ default: false })
   visible: boolean;
 
-  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  @CreateDateColumn()
   create_date: Date;
 
-  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  @UpdateDateColumn()
   update_date: Date;
 
   @Column()
@@ -40,4 +43,7 @@ export class Posts {
 
   @ManyToOne((type) => Users, (user) => user.id)
   user_id: Users;
+
+  @ManyToOne((type) => PostsTypes, (post) => post.id)
+  type_id: PostsTypes;
 }
