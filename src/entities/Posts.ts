@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+} from "typeorm";
+
+import { UserBookPosts } from './UserBookPosts';
 
 @Entity("posts")
 export class Posts {
@@ -25,4 +32,7 @@ export class Posts {
 
   @Column({ default: 0 })
   total_dislike: number;
+
+  @OneToMany(() => UserBookPosts, (userBookPosts) => userBookPosts.post_id)
+  book_id: UserBookPosts[];
 }
