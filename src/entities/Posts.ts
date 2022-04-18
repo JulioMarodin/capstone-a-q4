@@ -5,6 +5,7 @@ import {
   OneToMany,
   ManyToOne,
 } from "typeorm";
+import { Books } from "./Books";
 
 import { UserBookPosts } from './UserBookPosts';
 import { Users } from './Users';
@@ -40,4 +41,7 @@ export class Posts {
 
   @ManyToOne((type) => Users, (user) => user.id)
   user_id: Users;
+
+  @ManyToOne(() => Books, (book) => book.posts)
+  book: Books;
 }

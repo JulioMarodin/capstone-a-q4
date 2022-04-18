@@ -2,9 +2,7 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  ManyToOne,
 } from 'typeorm';
-import { Books } from './Books';
 
 @Entity()
 export class PostLike {
@@ -16,7 +14,4 @@ export class PostLike {
 
   @Column({ default: false })
   deslike: boolean;
-
-  @ManyToOne(() => Books, (book) => book.postsAv)
-  book: Books;
 }
