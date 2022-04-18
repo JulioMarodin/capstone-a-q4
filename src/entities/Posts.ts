@@ -1,4 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  ManyToOne,
+} from "typeorm";
+
+import { UserBookPosts } from './UserBookPosts';
+import { Users } from './Users';
 
 @Entity("posts")
 export class Posts {
@@ -25,4 +34,10 @@ export class Posts {
 
   @Column({ default: 0 })
   total_dislike: number;
+
+  @OneToMany(() => UserBookPosts, (userBookPosts) => userBookPosts.post_id)
+  book_id: UserBookPosts[];
+
+  @ManyToOne((type) => Users, (user) => user.id)
+  user_id: Users;
 }
