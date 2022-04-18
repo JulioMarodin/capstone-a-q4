@@ -3,25 +3,25 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  JoinColumn,
-} from 'typeorm';
+  CreateDateColumn,
+  UpdateDateColumn,
+} from "typeorm";
 import { PostsTypes } from "./PostsTypes";
+
+import { Users } from './Users';
 
 @Entity("posts")
 export class Posts {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne((type) => PostsTypes, (type_id) => type_id.id)
-  type_id: PostsTypes;
-
   @Column({ default: false })
   visible: boolean;
 
-  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  @CreateDateColumn()
   create_date: Date;
 
-  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  @UpdateDateColumn()
   update_date: Date;
 
   @Column()
@@ -35,4 +35,10 @@ export class Posts {
 
   @Column({ default: 0 })
   total_dislike: number;
+
+  @ManyToOne((type) => Users, (user) => user.id)
+  user_id: Users;
+
+  @ManyToOne((type) => PostsTypes, (post) => post.id)
+  type_id: PostsTypes;
 }

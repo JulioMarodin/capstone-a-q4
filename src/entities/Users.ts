@@ -4,27 +4,30 @@ import {
     Column,
     OneToMany,
 } from 'typeorm';
+
 import { TratativaAdmin } from './TratativaAdmin';
+import { UserBooks } from './UserBooks';
+import { Posts } from './Posts';
 
 @Entity('users')
 export class Users {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+    id: string;
 
   @Column({ length: 128 })
-  name: string;
+    name: string;
 
   @Column({ length: 128 })
-  email: string;
+    email: string;
 
   @Column()
-  password: string;
+    password: string;
 
   @Column()
-  biography: string;
+    biography: string;
 
   @Column()
-  birthday: Date;
+    birthday: Date;
 
   @Column({ length: 128 })
   city: string;
@@ -37,4 +40,10 @@ export class Users {
 
   @OneToMany(() => TratativaAdmin, (tratativaAdmin) => tratativaAdmin.solved_by_id)
   solvedTratativasAdmin: TratativaAdmin[];
+
+  @OneToMany(() => UserBooks, (userBooks) => userBooks.user_id)
+  userBooks: UserBooks[];
+
+  @OneToMany(() => Posts, (posts) => posts.user_id)
+  posts: Posts[];
 }
