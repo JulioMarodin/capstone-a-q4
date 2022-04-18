@@ -1,9 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import { PostsTypes } from "./PostsTypes";
 
 @Entity("posts")
 export class Posts {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @ManyToOne((type) => PostsTypes, (type_id) => type_id.id)
+  type_id: PostsTypes;
 
   @Column({ default: false })
   visible: boolean;
