@@ -9,7 +9,6 @@ import {
 import { Genres } from "./Genres";
 import { Publishers } from "./Publishers";
 import { Posts } from "./Posts";
-import { UserBookPosts } from './UserBookPosts';
 
 @Entity("books")
 export class Books {
