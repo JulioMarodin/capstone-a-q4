@@ -6,6 +6,7 @@ import {
 } from 'typeorm';
 
 import { TratativaAdmin } from './TratativaAdmin';
+import { UserBookPosts } from './UserBookPosts';
 import { UserBooks } from './UserBooks';
 import { Posts } from './Posts';
 
@@ -40,6 +41,9 @@ export class Users {
 
   @OneToMany(() => TratativaAdmin, (tratativaAdmin) => tratativaAdmin.solved_by_id)
   solvedTratativasAdmin: TratativaAdmin[];
+
+  @OneToMany(() => UserBookPosts, (userBookPosts) => userBookPosts.user_id)
+  user_id: UserBookPosts[];
 
   @OneToMany(() => UserBooks, (userBooks) => userBooks.user_id)
   userBooks: UserBooks[];

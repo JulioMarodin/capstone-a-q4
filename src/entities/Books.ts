@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+} from "typeorm";
+
+import { UserBookPosts } from './UserBookPosts';
 
 @Entity("books")
 export class Books {
@@ -28,4 +35,7 @@ export class Books {
 
   @Column()
   number_pages: number;
+
+  @OneToMany(() => UserBookPosts, (userBookPosts) => userBookPosts.book_id)
+  book_id: UserBookPosts[];
 }
