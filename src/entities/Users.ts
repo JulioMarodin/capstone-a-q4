@@ -7,7 +7,7 @@ import {
 
 import { TratativaAdmin } from './TratativaAdmin';
 import { UserBooks } from './UserBooks';
-import { PostsTypes } from './PostsTypes';
+import { Posts } from './Posts';
 
 @Entity('users')
 export class Users {
@@ -44,6 +44,6 @@ export class Users {
   @OneToMany(() => UserBooks, (userBooks) => userBooks.user_id)
   userBooks: UserBooks[];
 
-  @OneToMany(() => PostsTypes, (postsTypes) => postsTypes.user_id)
-  postsTypes: PostsTypes[];
+  @OneToMany(() => Posts, (posts) => posts.user_id)
+  posts: Posts[];
 }
