@@ -2,17 +2,15 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  OneToMany,
   ManyToOne,
   CreateDateColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { Authors } from "./Authors";
 
 import { Books } from "./Books";
 
 import { PostsTypes } from "./PostsTypes";
-
-import { UserBookPosts } from './UserBookPosts';
 
 import { Users } from './Users';
 
@@ -45,9 +43,12 @@ export class Posts {
   @ManyToOne((type) => Users, (user) => user.id)
   user_id: Users;
 
-  @ManyToOne(() => Books, (book) => book.posts)
-  book: Books;
+  @ManyToOne(() => Books, (book) => book.id)
+  book_id: Books;
 
   @ManyToOne((type) => PostsTypes, (post) => post.id)
   type_id: PostsTypes;
+
+  @ManyToOne((type) => Authors, (author) => author.id)
+  author_id: Authors;
 }
