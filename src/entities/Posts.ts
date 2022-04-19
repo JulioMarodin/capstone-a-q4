@@ -43,12 +43,12 @@ export class Posts {
   @ManyToOne((type) => Users, (user) => user.id)
   user_id: Users;
 
-  @ManyToOne(() => Books, (book) => book.id)
-  book_id: Books;
+  @ManyToOne(() => Books, (book) => book.posts)
+  book: Books;
 
   @ManyToOne((type) => PostsTypes, (post) => post.id)
   type_id: PostsTypes;
 
-  @ManyToOne((type) => Authors, (author) => author.id)
+  @ManyToOne(() => Authors, (author) => author.posts)
   author_id: Authors;
 }
