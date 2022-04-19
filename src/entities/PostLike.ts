@@ -2,7 +2,9 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
+  ManyToOne,
 } from 'typeorm';
+import { Posts } from './Posts';
 
 @Entity()
 export class PostLike {
@@ -14,4 +16,7 @@ export class PostLike {
 
   @Column({ default: false })
   deslike: boolean;
+
+  @ManyToOne(() => Posts, (post) => post.id)
+  post: Posts;
 }

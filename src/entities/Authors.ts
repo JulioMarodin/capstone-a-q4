@@ -24,7 +24,7 @@ export class Authors {
   @Column({ nullable: true })
   death_date: Date;
 
-  @OneToMany(() => Books, (books) => books.publisher)
+  @OneToMany(() => Books, (books) => books.author)
   books: Books[];
 
   @OneToMany(() => Posts, (post) => post.author_id)
