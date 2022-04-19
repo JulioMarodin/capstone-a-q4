@@ -5,6 +5,7 @@ import {
   OneToMany,
 } from "typeorm";
 import { Books } from "./Books";
+import { Posts } from "./Posts";
 
 @Entity("authors")
 export class Authors {
@@ -25,4 +26,7 @@ export class Authors {
 
   @OneToMany(() => Books, (books) => books.publisher)
   books: Books[];
+
+  @OneToMany(() => Posts, (post) => post.author_id)
+  posts: Posts[];
 }
