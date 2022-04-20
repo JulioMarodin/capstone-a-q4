@@ -1,11 +1,11 @@
 import * as yup from 'yup';
-import titlelizer from '../utils/funcTitle';
+import { transformToTitle } from '../utils';
 
 const authorShape = yup.object().shape({
-  name: yup.string().required().transform((name) => titlelizer(name)),
-  country: yup.string().optional(),
-  birthday: yup.date().optional(),
-  death_date: yup.date().optional(),
+  name: yup.string().required().transform((name) => transformToTitle(name)),
+  country: yup.string().optional().transform((name) => transformToTitle(name)).nullable(true),
+  birthday: yup.date().optional().nullable(true),
+  death_date: yup.date().optional().nullable(true),
 });
 
 export default authorShape;

@@ -3,9 +3,9 @@ import {
   PrimaryGeneratedColumn,
   Column,
   OneToMany,
-} from "typeorm";
-import { Books } from "./Books";
-import { Posts } from "./Posts";
+} from 'typeorm';
+import { Books } from './Books';
+import { Posts } from './Posts';
 
 @Entity('authors')
 export class Authors {
@@ -15,10 +15,10 @@ export class Authors {
   @Column({ nullable: false, unique: true, length: 128 })
   name: string;
 
-  @Column({ length: 128 })
+  @Column({ length: 128, nullable: true })
   country: string;
 
-  @Column()
+  @Column({ nullable: true })
   birthday: Date;
 
   @Column({ nullable: true })

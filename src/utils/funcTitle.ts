@@ -1,4 +1,4 @@
-const titlelizer = (str) => {
+const transformToTitle = (str) => {
   const arrayTitle = str.split(' ');
 
   arrayTitle.forEach((element, index) => {
@@ -9,4 +9,4 @@ const titlelizer = (str) => {
  return arrayTitle.join(' ');
 };
 
-export default titlelizer;
+export default transformToTitle;
