@@ -2,7 +2,7 @@ import { getRepository, Repository } from 'typeorm';
 import { Authors } from '../../entities/Authors';
 import { IAuthor, IAuthorsRepo, IdataUpdate } from './interfaces';
 
-class authorsRepository implements IAuthorsRepo {
+class AuthorsRepository implements IAuthorsRepo {
   private ormRepo: Repository<Authors>;
 
   constructor() {
@@ -22,4 +22,4 @@ class authorsRepository implements IAuthorsRepo {
   deleteAuthor = async (dataAuthor: IdataUpdate) => await this.ormRepo.delete(dataAuthor);
 }
 
-export default authorsRepository;
+export default AuthorsRepository;
