@@ -1,8 +1,11 @@
 import { Router } from 'express';
-import { verifyAuth, isAdmin } from '../../middlewares';
-import { getAuthor, deleteAuthor } from '../../controllers/authors';
+import { verifyAuth, isAdmin, validateShape } from '../../middlewares';
+import { getAuthor, deleteAuthor, createAuthorController } from '../../controllers/Authors';
+import { authorShape } from '../../shapes';
 
 const routesAuthor = Router();
+
+routesAuthor.post('', validateShape(authorShape), createAuthorController);
 
 routesAuthor.get('/authors/:name', verifyAuth, getAuthor);
 
