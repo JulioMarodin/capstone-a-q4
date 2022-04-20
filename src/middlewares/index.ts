@@ -1,4 +1,5 @@
 import validateShape from './validateShape.middleware';
+import verifyAuth from './verifyAuth';
 import checkUnique from './checkUniqueValue';
 
-export { validateShape, checkUnique };
+export { validateShape, verifyAuth, checkUnique };

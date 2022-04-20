@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import authorRouter from './authors';
+import routesAuthor from './Authors/authors.routes';
 
 const apiRouter = Router();
 
-apiRouter.use('/author', authorRouter);
+apiRouter.use('/author', routesAuthor);
 
 export default apiRouter;
