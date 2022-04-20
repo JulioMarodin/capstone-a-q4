@@ -15,7 +15,7 @@ interface IdataUpdate {
 interface IAuthorsRepo {
     createAuthor:(author:IAuthor)=>IAuthor;
     saveAuthor:(author:IAuthor)=>void;
-    findAuthor:(id:string)=>Promise<IAuthor>;
+    findAuthor:(id:number)=>Promise<IAuthor>;
     findAuthors:()=>Promise<Array<IAuthor>>;
     updateAuthor:(dataAuthor:IdataUpdate, update:IdataUpdate)=>Promise<UpdateResult>;
     deleteAuthor:(dataAuthor:IdataUpdate)=>Promise<DeleteResult>;

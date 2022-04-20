@@ -5,14 +5,14 @@ import {
   JoinTable,
   ManyToOne,
   OneToMany,
-} from "typeorm";
-import { Genres } from "./Genres";
-import { Publishers } from "./Publishers";
-import { Posts } from "./Posts";
-import { Authors } from "./Authors";
-import { UserBooks } from "./UserBooks";
+} from 'typeorm';
+import { Genres } from './Genres';
+import { Publishers } from './Publishers';
+import { Posts } from './Posts';
+import { Authors } from './Authors';
+import { UserBooks } from './UserBooks';
 
-@Entity("books")
+@Entity('books')
 export class Books {
   @PrimaryGeneratedColumn()
   id: number;
@@ -51,7 +51,7 @@ export class Books {
   publisher: Publishers;
 
   @ManyToOne(() => Authors, (author) => author.books)
-  author: Authors;
+  author: Promise<Authors>;
 
   @ManyToMany(() => Genres)
   @JoinTable()

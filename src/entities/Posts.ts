@@ -6,17 +6,17 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
-} from "typeorm";
-import { Authors } from "./Authors";
+} from 'typeorm';
+import { Authors } from './Authors';
 
-import { Books } from "./Books";
-import { PostLike } from "./PostLike";
+import { Books } from './Books';
+import { PostLike } from './PostLike';
 
-import { PostsTypes } from "./PostsTypes";
+import { PostsTypes } from './PostsTypes';
 
 import { Users } from './Users';
 
-@Entity("posts")
+@Entity('posts')
 export class Posts {
   @PrimaryGeneratedColumn()
   id: number;
@@ -52,7 +52,7 @@ export class Posts {
   type_id: PostsTypes;
 
   @ManyToOne(() => Authors, (author) => author.posts)
-  author_id: Authors;
+  author_id: Promise<Authors>;
 
   @OneToMany(() => PostLike, (postlike) => postlike.post)
   postlike: PostLike[];
