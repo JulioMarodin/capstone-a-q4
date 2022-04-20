@@ -14,7 +14,6 @@
     "import/prefer-default-export": "off",
     "no-unused-vars": "off",
     "indent":"off",
-    "quotes":"off",
     "import/no-unresolved": "off",
     "import/extensions":"off",
     "max-len":"off",
