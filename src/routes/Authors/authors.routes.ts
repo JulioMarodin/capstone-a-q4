@@ -1,9 +1,11 @@
 import { Router } from 'express';
-import { verifyAuth } from '../../middlewares';
-import { getAuthor } from '../../controllers/authors';
+import { verifyAuth, isAdmin } from '../../middlewares';
+import { getAuthor, deleteAuthor } from '../../controllers/authors';
 
 const routesAuthor = Router();
 
-routesAuthor.get('/author/:id', verifyAuth, getAuthor);
+routesAuthor.get('/authors/:name', verifyAuth, getAuthor);
+
+routesAuthor.delete('/authors/:name', verifyAuth, isAdmin, deleteAuthor);
 
 export default routesAuthor;

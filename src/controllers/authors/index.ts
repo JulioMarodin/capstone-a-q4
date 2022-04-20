@@ -1,3 +1,4 @@
-import getAuthor from './getAuthorControllers';
+import getAuthor from './getAuthor.controller';
+import deleteAuthor from './deleteAuthor.controller';
 
-export { getAuthor };
+export { getAuthor, deleteAuthor };
