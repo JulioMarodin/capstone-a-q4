@@ -5,10 +5,12 @@ import {
   ManyToOne,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from "typeorm";
 import { Authors } from "./Authors";
 
 import { Books } from "./Books";
+import { PostLike } from "./PostLike";
 
 import { PostsTypes } from "./PostsTypes";
 
@@ -51,4 +53,7 @@ export class Posts {
 
   @ManyToOne(() => Authors, (author) => author.posts)
   author_id: Authors;
+
+  @OneToMany(() => PostLike, (postlike) => postlike.post)
+  postlike: PostLike[];
 }

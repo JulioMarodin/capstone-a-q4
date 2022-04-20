@@ -6,7 +6,5 @@ import dbConfig from "./db/ormconfig";
 createConnection(dbConfig).then(() => {
   const PORT = process.env.PORT ?? 3000;
   console.log("Database connected");
-  app.listen(() => 
-    console.log(`App is running on http://localhost:${PORT}`)
-  );
+  app.listen(process.env.PORT || 3000);
 }).catch((err) => console.log(err));

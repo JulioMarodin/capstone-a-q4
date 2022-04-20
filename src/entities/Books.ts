@@ -9,6 +9,7 @@ import {
 import { Genres } from "./Genres";
 import { Publishers } from "./Publishers";
 import { Posts } from "./Posts";
+import { Authors } from "./Authors";
 import { UserBooks } from "./UserBooks";
 
 @Entity("books")
@@ -43,8 +44,14 @@ export class Books {
   @OneToMany(() => Posts, (post) => post.book)
   posts: Posts[];
 
+  @OneToMany(() => UserBooks, (userBooks) => userBooks.book_id)
+  userBook: UserBooks[];
+
   @ManyToOne(() => Publishers, (publisher) => publisher.books)
   publisher: Publishers;
+
+  @ManyToOne(() => Authors, (author) => author.books)
+  author: Authors;
 
   @ManyToMany(() => Genres)
   @JoinTable()

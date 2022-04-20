@@ -4,6 +4,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Books } from './Books';
 
 import { Users } from './Users';
 
@@ -29,4 +30,7 @@ rating: number;
 
 @ManyToOne((type) => Users, (user) => user.id)
 user_id: Users;
+
+@ManyToOne((type) => Books, (book) => book.id)
+book_id: Books;
 }
