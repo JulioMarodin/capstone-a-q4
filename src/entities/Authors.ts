@@ -7,7 +7,7 @@ import {
 import { Books } from "./Books";
 import { Posts } from "./Posts";
 
-@Entity("authors")
+@Entity('authors')
 export class Authors {
   @PrimaryGeneratedColumn()
   id: number;
