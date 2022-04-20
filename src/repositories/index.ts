@@ -1,3 +1,4 @@
 import AuthorsRepository from './Authors';
+import UserBooksRepository from './UserBooksRepository';
 
-export { AuthorsRepository };
+export { AuthorsRepository, UserBooksRepository };
