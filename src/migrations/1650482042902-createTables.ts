@@ -1,7 +1,11 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
+import { hashSync } from "bcryptjs";
+import dotenv from 'dotenv';
 
-export class createAllTables1650458421465 implements MigrationInterface {
-    name = 'createAllTables1650458421465'
+dotenv.config();
+
+export class createTables1650482042902 implements MigrationInterface {
+    name = 'createTables1650482042902'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "genres" ("id" SERIAL NOT NULL, "name" character varying(128) NOT NULL, CONSTRAINT "UQ_f105f8230a83b86a346427de94d" UNIQUE ("name"), CONSTRAINT "PK_80ecd718f0f00dde5d77a9be842" PRIMARY KEY ("id"))`);
@@ -13,7 +17,7 @@ export class createAllTables1650458421465 implements MigrationInterface {
         await queryRunner.query(`CREATE TABLE "users" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying(128) NOT NULL, "email" character varying(128) NOT NULL, "password" character varying NOT NULL, "biography" character varying NOT NULL, "birthday" TIMESTAMP NOT NULL, "city" character varying(128) NOT NULL, "admin" boolean NOT NULL DEFAULT false, CONSTRAINT "PK_a3ffb1c0c8416b9fc6f907b7433" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "posts" ("id" SERIAL NOT NULL, "visible" boolean NOT NULL DEFAULT false, "create_date" TIMESTAMP NOT NULL DEFAULT now(), "update_date" TIMESTAMP NOT NULL DEFAULT now(), "description" character varying NOT NULL, "image" character varying NOT NULL, "total_like" integer NOT NULL DEFAULT '0', "total_dislike" integer NOT NULL DEFAULT '0', "userIdId" uuid, "bookId" integer, "typeIdId" integer, "authorIdId" integer, CONSTRAINT "PK_2829ac61eff60fcec60d7274b9e" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "books" ("id" SERIAL NOT NULL, "rating" integer NOT NULL DEFAULT '0', "number_reviews" integer NOT NULL DEFAULT '0', "isbn" character varying(13) NOT NULL, "title" character varying(128) NOT NULL, "volume" integer NOT NULL, "cover_image" character varying NOT NULL, "released_date" TIMESTAMP NOT NULL, "number_pages" integer NOT NULL, "publisherId" integer, "authorId" integer, CONSTRAINT "PK_f3f2f25a099d24e12545b70b022" PRIMARY KEY ("id"))`);
-        await queryRunner.query(`CREATE TABLE "authors" ("id" SERIAL NOT NULL, "name" character varying(128) NOT NULL, "country" character varying(128) NOT NULL, "birthday" TIMESTAMP NOT NULL, "death_date" TIMESTAMP, CONSTRAINT "UQ_6c64b3df09e6774438aeca7e0b0" UNIQUE ("name"), CONSTRAINT "PK_d2ed02fabd9b52847ccb85e6b88" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TABLE "authors" ("id" SERIAL NOT NULL, "name" character varying(128) NOT NULL, "country" character varying(128), "birthday" TIMESTAMP, "death_date" TIMESTAMP, CONSTRAINT "UQ_6c64b3df09e6774438aeca7e0b0" UNIQUE ("name"), CONSTRAINT "PK_d2ed02fabd9b52847ccb85e6b88" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "books_genre_genres" ("booksId" integer NOT NULL, "genresId" integer NOT NULL, CONSTRAINT "PK_f4a44b2bb6c55c39cbae989c7ab" PRIMARY KEY ("booksId", "genresId"))`);
         await queryRunner.query(`CREATE INDEX "IDX_da41964a8550fb800fefcd2fdb" ON "books_genre_genres" ("booksId") `);
         await queryRunner.query(`CREATE INDEX "IDX_6249a7b8829da2f05f3fa8a585" ON "books_genre_genres" ("genresId") `);
@@ -31,6 +35,11 @@ export class createAllTables1650458421465 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE "books" ADD CONSTRAINT "FK_54f49efe2dd4d2850e736e9ab86" FOREIGN KEY ("authorId") REFERENCES "authors"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "books_genre_genres" ADD CONSTRAINT "FK_da41964a8550fb800fefcd2fdb4" FOREIGN KEY ("booksId") REFERENCES "books"("id") ON DELETE CASCADE ON UPDATE CASCADE`);
         await queryRunner.query(`ALTER TABLE "books_genre_genres" ADD CONSTRAINT "FK_6249a7b8829da2f05f3fa8a585b" FOREIGN KEY ("genresId") REFERENCES "genres"("id") ON DELETE CASCADE ON UPDATE CASCADE`);
+        await queryRunner.query(`INSERT INTO "users" ("name", "email", "password", "biography", "birthday", "city", "admin") VALUES ('${process.env.ADMIN_NAME}','${process.env.ADMIN_EMAIL}',
+        '(${hashSync(process.env.ADMIN_PASSWORD)}','admin','${process.env.ADMIN_BIRTHDAY}','${process.env.ADMIN_CITY}',true)`);
+        await queryRunner.query(`INSERT INTO "posts_types" ("type", "visible") VALUES ('resenha','true')`);
+        await queryRunner.query(`INSERT INTO "posts_types" ("type", "visible") VALUES ('comentario','true')`);
+        await queryRunner.query(`INSERT INTO "posts_types" ("type", "visible") VALUES ('marcacao','false')`);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
