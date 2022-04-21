@@ -1,6 +1,6 @@
-import { getRepository, Repository } from "typeorm";
-import { Users } from "../../entities/Users";
-import { IUsers, IdataUpdate, IusersRepo } from "./interfaces";
+import { getRepository, Repository } from 'typeorm';
+import { Users } from '../../entities/Users';
+import { IUsers, IdataUpdate, IusersRepo } from './interfaces';
 
 class usersRepository implements IusersRepo {
     private ormRepo : Repository<Users>;

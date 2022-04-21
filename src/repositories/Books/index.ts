@@ -1,6 +1,6 @@
-import { getRepository, Repository } from "typeorm";
-import { Books } from "../../entities/Books";
-import { IBooks, IdataUpdateBooks, IbooksRepo } from "./interfaces";
+import { getRepository, Repository } from 'typeorm';
+import { Books } from '../../entities/Books';
+import { IBooks, IdataUpdateBooks, IbooksRepo } from './interfaces';
 
 class booksRepository implements IbooksRepo {
     private ormBooksRepo : Repository<Books>;
