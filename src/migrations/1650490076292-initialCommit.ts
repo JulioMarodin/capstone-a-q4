@@ -1,11 +1,7 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
-import { hashSync } from "bcryptjs";
-import dotenv from 'dotenv';
 
-dotenv.config();
-
-export class createTables1650482042902 implements MigrationInterface {
-    name = 'createTables1650482042902'
+export class initialCommit1650490076292 implements MigrationInterface {
+    name = 'initialCommit1650490076292'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "genres" ("id" SERIAL NOT NULL, "name" character varying(128) NOT NULL, CONSTRAINT "UQ_f105f8230a83b86a346427de94d" UNIQUE ("name"), CONSTRAINT "PK_80ecd718f0f00dde5d77a9be842" PRIMARY KEY ("id"))`);
@@ -35,11 +31,6 @@ export class createTables1650482042902 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE "books" ADD CONSTRAINT "FK_54f49efe2dd4d2850e736e9ab86" FOREIGN KEY ("authorId") REFERENCES "authors"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "books_genre_genres" ADD CONSTRAINT "FK_da41964a8550fb800fefcd2fdb4" FOREIGN KEY ("booksId") REFERENCES "books"("id") ON DELETE CASCADE ON UPDATE CASCADE`);
         await queryRunner.query(`ALTER TABLE "books_genre_genres" ADD CONSTRAINT "FK_6249a7b8829da2f05f3fa8a585b" FOREIGN KEY ("genresId") REFERENCES "genres"("id") ON DELETE CASCADE ON UPDATE CASCADE`);
-        await queryRunner.query(`INSERT INTO "users" ("name", "email", "password", "biography", "birthday", "city", "admin") VALUES ('${process.env.ADMIN_NAME}','${process.env.ADMIN_EMAIL}',
-        '(${hashSync(process.env.ADMIN_PASSWORD)}','admin','${process.env.ADMIN_BIRTHDAY}','${process.env.ADMIN_CITY}',true)`);
-        await queryRunner.query(`INSERT INTO "posts_types" ("type", "visible") VALUES ('resenha','true')`);
-        await queryRunner.query(`INSERT INTO "posts_types" ("type", "visible") VALUES ('comentario','true')`);
-        await queryRunner.query(`INSERT INTO "posts_types" ("type", "visible") VALUES ('marcacao','false')`);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

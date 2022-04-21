@@ -3,7 +3,7 @@ import { getRepository, Repository } from 'typeorm';
 import { IGenres, IDataUpdateGenres } from './interfaces';
 import { Genres } from '../../entities/Genres';
 
-class genreRepository implements IGenres {
+class GenreRepository implements IGenres {
   private ormRepo: Repository<Genres>;
 
   constructor() {
@@ -23,4 +23,4 @@ class genreRepository implements IGenres {
   deleteGenre = async (genre: IDataUpdateGenres) => await this.ormRepo.delete(genre);
 }
 
-export default genreRepository;
+export default GenreRepository;
