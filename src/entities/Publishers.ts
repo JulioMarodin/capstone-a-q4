@@ -3,8 +3,8 @@ import {
     PrimaryGeneratedColumn,
     Column,
     ManyToOne,
-} from "typeorm";
-import { Books } from "./Books";
+} from 'typeorm';
+import { Books } from './Books';
 
 @Entity('publishers')
 export class Publishers {
