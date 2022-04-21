@@ -7,6 +7,6 @@ const routesGenre = Router();
 
 routesGenre.post('', validateShape(genreShape), verifyAuth, isAdmin, createGenreController);
 
-routesGenre.get('/:id', getGenre);
+routesGenre.get('/:id', verifyAuth, getGenre);
 
 export default routesGenre;
