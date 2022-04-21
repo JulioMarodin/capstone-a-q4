@@ -1,4 +1,5 @@
 import createGenreController from './createGenre.controller';
-import getGenre from './getGenre.controller';
+import deleteGenreController from './deleteGenre.controller';
+import getGenreController from './getGenre.controller';
 
-export { createGenreController, getGenre };
+export { createGenreController, deleteGenreController, getGenreController };
