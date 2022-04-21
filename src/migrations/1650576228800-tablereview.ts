@@ -1,11 +1,7 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
-import { hashSync } from "bcryptjs";
-import dotenv from 'dotenv';
 
-dotenv.config();
-
-export class createTables1650482042902 implements MigrationInterface {
-    name = 'createTables1650482042902'
+export class tablereview1650576228800 implements MigrationInterface {
+    name = 'tablereview1650576228800'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "genres" ("id" SERIAL NOT NULL, "name" character varying(128) NOT NULL, CONSTRAINT "UQ_f105f8230a83b86a346427de94d" UNIQUE ("name"), CONSTRAINT "PK_80ecd718f0f00dde5d77a9be842" PRIMARY KEY ("id"))`);
@@ -18,9 +14,9 @@ export class createTables1650482042902 implements MigrationInterface {
         await queryRunner.query(`CREATE TABLE "posts" ("id" SERIAL NOT NULL, "visible" boolean NOT NULL DEFAULT false, "create_date" TIMESTAMP NOT NULL DEFAULT now(), "update_date" TIMESTAMP NOT NULL DEFAULT now(), "description" character varying NOT NULL, "image" character varying NOT NULL, "total_like" integer NOT NULL DEFAULT '0', "total_dislike" integer NOT NULL DEFAULT '0', "userIdId" uuid, "bookId" integer, "typeIdId" integer, "authorIdId" integer, CONSTRAINT "PK_2829ac61eff60fcec60d7274b9e" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "books" ("id" SERIAL NOT NULL, "rating" integer NOT NULL DEFAULT '0', "number_reviews" integer NOT NULL DEFAULT '0', "isbn" character varying(13) NOT NULL, "title" character varying(128) NOT NULL, "volume" integer NOT NULL, "cover_image" character varying NOT NULL, "released_date" TIMESTAMP NOT NULL, "number_pages" integer NOT NULL, "publisherId" integer, "authorId" integer, CONSTRAINT "PK_f3f2f25a099d24e12545b70b022" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "authors" ("id" SERIAL NOT NULL, "name" character varying(128) NOT NULL, "country" character varying(128), "birthday" TIMESTAMP, "death_date" TIMESTAMP, CONSTRAINT "UQ_6c64b3df09e6774438aeca7e0b0" UNIQUE ("name"), CONSTRAINT "PK_d2ed02fabd9b52847ccb85e6b88" PRIMARY KEY ("id"))`);
-        await queryRunner.query(`CREATE TABLE "books_genre_genres" ("booksId" integer NOT NULL, "genresId" integer NOT NULL, CONSTRAINT "PK_f4a44b2bb6c55c39cbae989c7ab" PRIMARY KEY ("booksId", "genresId"))`);
-        await queryRunner.query(`CREATE INDEX "IDX_da41964a8550fb800fefcd2fdb" ON "books_genre_genres" ("booksId") `);
-        await queryRunner.query(`CREATE INDEX "IDX_6249a7b8829da2f05f3fa8a585" ON "books_genre_genres" ("genresId") `);
+        await queryRunner.query(`CREATE TABLE "books_genres_genres" ("booksId" integer NOT NULL, "genresId" integer NOT NULL, CONSTRAINT "PK_5773bf45b53a35762fd16cc97a0" PRIMARY KEY ("booksId", "genresId"))`);
+        await queryRunner.query(`CREATE INDEX "IDX_e1c8b5fb4c9afac80b2591b0c8" ON "books_genres_genres" ("booksId") `);
+        await queryRunner.query(`CREATE INDEX "IDX_8d2218df7344c443d9ded15492" ON "books_genres_genres" ("genresId") `);
         await queryRunner.query(`ALTER TABLE "publishers" ADD CONSTRAINT "FK_090dc6e675f5880ac92bb2b7a69" FOREIGN KEY ("booksId") REFERENCES "books"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "post_like" ADD CONSTRAINT "FK_789b3f929eb3d8760419f87c8a9" FOREIGN KEY ("postId") REFERENCES "posts"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "tratativaAdmin" ADD CONSTRAINT "FK_3d6126744e9c365b3e6d2a020f7" FOREIGN KEY ("originUserIdId") REFERENCES "users"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
@@ -33,18 +29,13 @@ export class createTables1650482042902 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE "posts" ADD CONSTRAINT "FK_ff800d1b5262cfbd4eac31c607a" FOREIGN KEY ("authorIdId") REFERENCES "authors"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "books" ADD CONSTRAINT "FK_594ad92cc478a33e51fd0e31bf3" FOREIGN KEY ("publisherId") REFERENCES "publishers"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "books" ADD CONSTRAINT "FK_54f49efe2dd4d2850e736e9ab86" FOREIGN KEY ("authorId") REFERENCES "authors"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
-        await queryRunner.query(`ALTER TABLE "books_genre_genres" ADD CONSTRAINT "FK_da41964a8550fb800fefcd2fdb4" FOREIGN KEY ("booksId") REFERENCES "books"("id") ON DELETE CASCADE ON UPDATE CASCADE`);
-        await queryRunner.query(`ALTER TABLE "books_genre_genres" ADD CONSTRAINT "FK_6249a7b8829da2f05f3fa8a585b" FOREIGN KEY ("genresId") REFERENCES "genres"("id") ON DELETE CASCADE ON UPDATE CASCADE`);
-        await queryRunner.query(`INSERT INTO "users" ("name", "email", "password", "biography", "birthday", "city", "admin") VALUES ('${process.env.ADMIN_NAME}','${process.env.ADMIN_EMAIL}',
-        '(${hashSync(process.env.ADMIN_PASSWORD)}','admin','${process.env.ADMIN_BIRTHDAY}','${process.env.ADMIN_CITY}',true)`);
-        await queryRunner.query(`INSERT INTO "posts_types" ("type", "visible") VALUES ('resenha','true')`);
-        await queryRunner.query(`INSERT INTO "posts_types" ("type", "visible") VALUES ('comentario','true')`);
-        await queryRunner.query(`INSERT INTO "posts_types" ("type", "visible") VALUES ('marcacao','false')`);
+        await queryRunner.query(`ALTER TABLE "books_genres_genres" ADD CONSTRAINT "FK_e1c8b5fb4c9afac80b2591b0c84" FOREIGN KEY ("booksId") REFERENCES "books"("id") ON DELETE CASCADE ON UPDATE CASCADE`);
+        await queryRunner.query(`ALTER TABLE "books_genres_genres" ADD CONSTRAINT "FK_8d2218df7344c443d9ded154921" FOREIGN KEY ("genresId") REFERENCES "genres"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`ALTER TABLE "books_genre_genres" DROP CONSTRAINT "FK_6249a7b8829da2f05f3fa8a585b"`);
-        await queryRunner.query(`ALTER TABLE "books_genre_genres" DROP CONSTRAINT "FK_da41964a8550fb800fefcd2fdb4"`);
+        await queryRunner.query(`ALTER TABLE "books_genres_genres" DROP CONSTRAINT "FK_8d2218df7344c443d9ded154921"`);
+        await queryRunner.query(`ALTER TABLE "books_genres_genres" DROP CONSTRAINT "FK_e1c8b5fb4c9afac80b2591b0c84"`);
         await queryRunner.query(`ALTER TABLE "books" DROP CONSTRAINT "FK_54f49efe2dd4d2850e736e9ab86"`);
         await queryRunner.query(`ALTER TABLE "books" DROP CONSTRAINT "FK_594ad92cc478a33e51fd0e31bf3"`);
         await queryRunner.query(`ALTER TABLE "posts" DROP CONSTRAINT "FK_ff800d1b5262cfbd4eac31c607a"`);
@@ -57,9 +48,9 @@ export class createTables1650482042902 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE "tratativaAdmin" DROP CONSTRAINT "FK_3d6126744e9c365b3e6d2a020f7"`);
         await queryRunner.query(`ALTER TABLE "post_like" DROP CONSTRAINT "FK_789b3f929eb3d8760419f87c8a9"`);
         await queryRunner.query(`ALTER TABLE "publishers" DROP CONSTRAINT "FK_090dc6e675f5880ac92bb2b7a69"`);
-        await queryRunner.query(`DROP INDEX "public"."IDX_6249a7b8829da2f05f3fa8a585"`);
-        await queryRunner.query(`DROP INDEX "public"."IDX_da41964a8550fb800fefcd2fdb"`);
-        await queryRunner.query(`DROP TABLE "books_genre_genres"`);
+        await queryRunner.query(`DROP INDEX "public"."IDX_8d2218df7344c443d9ded15492"`);
+        await queryRunner.query(`DROP INDEX "public"."IDX_e1c8b5fb4c9afac80b2591b0c8"`);
+        await queryRunner.query(`DROP TABLE "books_genres_genres"`);
         await queryRunner.query(`DROP TABLE "authors"`);
         await queryRunner.query(`DROP TABLE "books"`);
         await queryRunner.query(`DROP TABLE "posts"`);

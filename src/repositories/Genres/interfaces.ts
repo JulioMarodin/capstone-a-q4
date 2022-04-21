@@ -8,7 +8,7 @@ interface IDataUpdateGenres {
 interface IGenres {
   createGenre: (genre: Genres) => Genres;
   saveGenre: (genre: Genres) => void;
-  findGenre: () => Promise<Genres[]>;
+  findGenre: (name: string) => Promise<Genres>;
   findGenreById: (id: number) => Promise<Genres>;
   updateGenre: (genre: IDataUpdateGenres, update: IDataUpdateGenres) => Promise<UpdateResult>;
   deleteGenre: (genre: IDataUpdateGenres) => Promise<DeleteResult>;
