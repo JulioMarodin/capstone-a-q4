@@ -53,7 +53,7 @@ export class Books {
   @ManyToOne(() => Authors, (author) => author.books)
   author: Promise<Authors>;
 
-  @ManyToMany(() => Genres)
+  @ManyToMany(() => Genres, { eager: true })
   @JoinTable()
-  genre: Genres;
+  genres: Genres[];
 }
