@@ -2,7 +2,7 @@ import { getRepository, Repository } from 'typeorm';
 import { Posts } from '../../entities/Posts';
 import { IdataUpdatePosts, IpostsRepo } from './interfaces';
 
-class postsRepository implements IpostsRepo {
+class PostsRepository implements IpostsRepo {
   private ormPostsRepo : Repository<Posts>;
 
   constructor() {
@@ -22,4 +22,4 @@ class postsRepository implements IpostsRepo {
   deletePost = async (dataPost: IdataUpdatePosts) => await this.ormPostsRepo.delete(dataPost);
 }
 
-export default postsRepository;
+export default PostsRepository;
