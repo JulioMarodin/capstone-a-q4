@@ -55,5 +55,5 @@ export class Books {
 
   @ManyToMany(() => Genres)
   @JoinTable()
-  genres: Genres[];
+  genre: Genres[];
 }
