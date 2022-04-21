@@ -55,5 +55,5 @@ export class Books {
 
   @ManyToMany(() => Genres, (genres) => genres.books)
   @JoinTable()
-  genres: Promise<Genres[]>;
+  genre: Genres[];
 }
