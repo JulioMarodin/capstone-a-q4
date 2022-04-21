@@ -20,7 +20,7 @@ const prodConfig = {
 const devConfig = {
   type: 'postgres',
   host: 'localhost',
-  port: 5433,
+  port: 5432,
   username: process.env.POSTGRES_USERNAME,
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
@@ -34,4 +34,4 @@ const devConfig = {
   ssl: false,
 } as ConnectionOptions;
 
-export default process.env.NODE_ENV === "production" ? prodConfig : devConfig;
+export default process.env.NODE_ENV === 'production' ? prodConfig : devConfig;
