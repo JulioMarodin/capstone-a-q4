@@ -1,5 +1,5 @@
-import { UpdateResult, DeleteResult } from "typeorm";
-import { Posts } from "../../entities/Posts";
+import { UpdateResult, DeleteResult } from 'typeorm';
+import { Posts } from '../../entities/Posts';
 
 interface IdataUpdatePosts {
   [key:string]:string | number;

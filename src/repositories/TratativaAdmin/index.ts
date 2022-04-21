@@ -1,6 +1,6 @@
-import { getRepository, Repository } from "typeorm";
-import { TratativaAdmin } from "../../entities/TratativaAdmin";
-import { IdataUpdateTratativaAdmin, ITratativaAdminRepo } from "./interfaces";
+import { getRepository, Repository } from 'typeorm';
+import { TratativaAdmin } from '../../entities/TratativaAdmin';
+import { IdataUpdateTratativaAdmin, ITratativaAdminRepo } from './interfaces';
 
 class tratativaAdminRepository implements ITratativaAdminRepo {
   private ormTratativaAdminsRepo : Repository<TratativaAdmin>;
