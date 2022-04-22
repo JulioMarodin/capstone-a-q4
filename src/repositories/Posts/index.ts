@@ -11,9 +11,11 @@ class PostsRepository implements IpostsRepo {
 
   createPost = (post: Posts) => this.ormPostsRepo.create(post);
 
-  savePost = async (post: Posts) => await this.ormPostsRepo.save(post);
+  savePost = (post: Posts) => this.ormPostsRepo.save(post);
 
-  findPost = (id: string) => this.ormPostsRepo.findOne(id);
+  findPost = async (id: string) => await this.ormPostsRepo.findOne(id);
+
+  findPostsByAuthor = async (id: string) => await this.ormPostsRepo.find({ where: { author_id: { id } } });
 
   findPosts = async () => await this.ormPostsRepo.find();
 
