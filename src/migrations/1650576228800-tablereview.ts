@@ -31,6 +31,11 @@ export class tablereview1650576228800 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE "books" ADD CONSTRAINT "FK_54f49efe2dd4d2850e736e9ab86" FOREIGN KEY ("authorId") REFERENCES "authors"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "books_genres_genres" ADD CONSTRAINT "FK_e1c8b5fb4c9afac80b2591b0c84" FOREIGN KEY ("booksId") REFERENCES "books"("id") ON DELETE CASCADE ON UPDATE CASCADE`);
         await queryRunner.query(`ALTER TABLE "books_genres_genres" ADD CONSTRAINT "FK_8d2218df7344c443d9ded154921" FOREIGN KEY ("genresId") REFERENCES "genres"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`INSERT INTO "users" ("name", "email", "password", "biography", "birthday", "city", "admin") VALUES ('${process.env.ADMIN_NAME}','${process.env.ADMIN_EMAIL}',
+        '(${hashSync(process.env.ADMIN_PASSWORD)}','admin','${process.env.ADMIN_BIRTHDAY}','${process.env.ADMIN_CITY}',true)`);
+        await queryRunner.query(`INSERT INTO "posts_types" ("type", "visible") VALUES ('resenha','true')`);
+        await queryRunner.query(`INSERT INTO "posts_types" ("type", "visible") VALUES ('comentario','true')`);
+        await queryRunner.query(`INSERT INTO "posts_types" ("type", "visible") VALUES ('marcacao','false')`);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
