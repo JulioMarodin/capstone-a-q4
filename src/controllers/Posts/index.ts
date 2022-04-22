@@ -1,3 +1,4 @@
-import routesPosts from '../../routes/Posts';
+import getPosts from './getPosts.controller';
+import getPostsByAuthor from './getPostsByAuthor.controller';
 
-export default routesPosts;
+export { getPosts, getPostsByAuthor };
