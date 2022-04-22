@@ -1,4 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+ Entity, PrimaryGeneratedColumn, Column, ManyToMany,
+} from 'typeorm';
+import { Books } from './Books';
 
 @Entity('genres')
 export class Genres {
@@ -7,4 +10,7 @@ export class Genres {
 
   @Column({ nullable: false, unique: true, length: 128 })
   name: string;
+
+  @ManyToMany(() => Books, (book) => book.genre)
+  books:Books;
 }
