@@ -1,3 +1,4 @@
 import getUsers from './getUsers.controller';
+import createUserController from './createUser.controller';
 
-export { getUsers };
+export { getUsers, createUserController };

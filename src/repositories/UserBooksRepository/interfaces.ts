@@ -1,4 +1,4 @@
-import { UpdateResult, DeleteResult } from "typeorm";
+import { UpdateResult, DeleteResult } from 'typeorm';
 
 interface IUserBooks {
     id:number;

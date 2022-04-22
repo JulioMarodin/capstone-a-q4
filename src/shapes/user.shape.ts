@@ -1,19 +1,33 @@
 import * as yup from 'yup';
 import { hashSync } from 'bcryptjs';
-import { transformToTitle } from '../utils';
+import { transformToTitle, makeTitle } from '../utils';
 
-const authorShape = yup.object().shape({
-  name: yup.string().required().transform((name) => transformToTitle(name)),
-  email: yup.string().email().required().transform((email) => email.toLowerCase()),
-  password: yup.string().required().transform((pwd) => hashSync(pwd, 10)),
-  biography: yup.string().optional(),
-  city: yup.string()
-  .max(128)
-  .optional()
-  .transform((name) => transformToTitle(name))
-  .nullable(true),
-  birthday: yup.date().optional().nullable(true),
+const userShape = yup.object().shape({
+  name: yup
+    .string()
+    .required('name required')
+    .transform((str) => makeTitle(str)),
+  email: yup.string().email().lowercase().required('email required'),
+  password: yup
+    .string()
+    .required()
+    .transform((pw) => hashSync(pw, 10)),
+  biography: yup.string().max(400).optional(),
+  city: yup
+    .string()
+    .max(128)
+    .optional()
+    .transform((cityName) => makeTitle(cityName))
+    .nullable(true),
+  birthday: yup
+    .date()
+    // .matches(
+    //   /^\d{4}[/]?((((0[13578])|(1[02]))[/]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[/]?(([0-2][0-9])|(30)))|(02[/]?[0-2][0-9]))$/,
+    //   'date must be in the format yyyy/mm/dd',
+    // ),
+    .optional()
+    .nullable(true),
   admin: yup.boolean().default(() => false),
 });
 
-export default authorShape;
+export default userShape;
