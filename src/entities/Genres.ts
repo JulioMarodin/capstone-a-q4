@@ -11,6 +11,6 @@ export class Genres {
   @Column({ nullable: false, unique: true, length: 128 })
   name: string;
 
-  @ManyToMany(() => Books, (book) => book.genre)
+  @ManyToMany(() => Books, (book) => book.genres)
   books:Books;
 }
