@@ -1,8 +1,9 @@
-import { getRepository, Repository } from "typeorm";
-import { Users } from "../../entities/Users";
-import { IUsers, IdataUpdate, IusersRepo } from "./interfaces";
+import { getRepository, Repository, ILike } from 'typeorm';
+import { TratativaAdmin } from '../../entities/TratativaAdmin';
+import { Users } from '../../entities/Users';
+import { IUsers, IdataUpdate, IusersRepo } from './interfaces';
 
-class usersRepository implements IusersRepo {
+class UsersRepository implements IusersRepo {
     private ormRepo : Repository<Users>;
 
     constructor() {
@@ -13,13 +14,27 @@ class usersRepository implements IusersRepo {
 
     saveUser = async (user: IUsers) => await this.ormRepo.save(user);
 
-    findUser = async (id: string) => await this.ormRepo.findOne(id);
+    findUser = async (name: string) => await this.ormRepo.findOne({
+        where: { name: ILike(`%${name}%`) },
+    });
 
-    findUsers = async () => await this.ormRepo.find();
+    findUsers = async (page: number = 0, limit:number = 15) => await this.ormRepo.find({
+        skip: page,
+        take: limit,
+        order: { name: 'ASC' },
+    });
+
+    findFilteredUsers = async (name: string, page:number = 0, limit:number = 15) => await this.ormRepo.find({
+        where: { name: ILike(`%${name}%`) },
+        skip: page,
+        take: limit,
+        order: { name: 'ASC' },
+        loadEagerRelations: false,
+    });
 
     updateUser = async (dataUser: IdataUpdate, update: IdataUpdate) => await this.ormRepo.update(dataUser, update);
 
     deleteUser = async (dataUser: IdataUpdate) => await this.ormRepo.delete(dataUser);
 }
 
-export default usersRepository;
+export default UsersRepository;
