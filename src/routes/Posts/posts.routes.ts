@@ -6,6 +6,4 @@ const routesPosts = Router();
 
 routesPosts.get('', verifyAuth, getPosts);
 
-routesPosts.get('', verifyAuth, getPosts);
-
 export default routesPosts;
