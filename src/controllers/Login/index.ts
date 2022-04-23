@@ -1,6 +1,6 @@
-import { AsyncControl } from "../../@types"
-import UsersRepository from "../../repositories/Users"
-import { signIn } from "../../services/user.service";
+import { AsyncControl } from '../../@types';
+import UsersRepository from '../../repositories/Users';
+import { signIn } from '../../services/user.service';
 
 const userLogin: AsyncControl = async (req, res) => {
   const { email, password } = req.body;
@@ -12,7 +12,7 @@ const userLogin: AsyncControl = async (req, res) => {
   req.body.id = user.id;
   const token = signIn(req.body);
 
-  res.status(200).json({ token: token });
+  res.status(200).json({ token });
 };
 
 export { userLogin };
