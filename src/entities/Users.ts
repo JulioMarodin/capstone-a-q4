@@ -42,7 +42,7 @@ export class Users {
   solvedTratativasAdmin: TratativaAdmin[];
 
   @OneToMany(() => UserBooks, (userBooks) => userBooks.user_id)
-  userBooks: UserBooks[];
+  userBooks: Promise<UserBooks[]>;
 
   @OneToMany(() => Posts, (posts) => posts.user_id)
   posts: Posts[];
