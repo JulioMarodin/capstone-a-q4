@@ -6,7 +6,7 @@ const checkMySelfMiddleware = (entity) => async (req:Request, _res:Response, nex
     try {
         const userBook : any = await getRepository(entity).findOne(req.params.id);
         const { user } = req;
-        if (userBook.user_id !== user.id) {
+        if (userBook.user_id !== user.id && !user.admin) {
             throw new ErrorHandler(403, 'It is not possible to change the data of other users.');
         }
         return next();
