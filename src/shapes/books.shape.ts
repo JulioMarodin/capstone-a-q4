@@ -8,6 +8,8 @@ const bookShape = yup.object().shape({
     cover_image: yup.string().optional(),
     released_date: yup.date().optional().transform((date) => new Date(date)),
     number_pages: yup.number().optional(),
+    author: yup.string().required(),
+    publisher: yup.string().required(),
 });
 
 export default bookShape;
