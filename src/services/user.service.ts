@@ -1,5 +1,5 @@
-import jwt from "jsonwebtoken"
-import { jwtConfig } from "../configs";
+import jwt from 'jsonwebtoken';
+import { jwtConfig } from '../configs';
 
 const signIn = (data: any) => {
    const token = jwt.sign(
