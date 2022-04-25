@@ -15,6 +15,8 @@ class UsersRepository implements IusersRepo {
 
   findUser = async (name: string) => await this.ormRepo.findOne({
       where: { name: ILike(`%${name}%`) },
+      // relations: {},
+      loadEagerRelations: true,
     });
 
   findUsers = async (page: number = 0, limit: number = 15) => await this.ormRepo.find({

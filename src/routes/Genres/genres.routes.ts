@@ -20,5 +20,4 @@ routesGenre.patch('/:name', verifyAuth, validateShape(genreShape), isAdmin, upda
 routesGenre.delete('/name', verifyAuth, isAdmin, deleteGenreController);
 routesGenre.get('/:id', verifyAuth, getGenreController);
 
-
 export default routesGenre;
