@@ -17,7 +17,7 @@ export class Users {
   @Column({ length: 128 })
     name: string;
 
-  @Column({ length: 128 })
+  @Column({ length: 128, unique: true })
     email: string;
 
   @Column()
@@ -35,7 +35,7 @@ export class Users {
   @Column({ default: false })
   admin: boolean;
 
-  @OneToMany((type) => TratativaAdmin, (tratativaAdmin) => tratativaAdmin.origin_user_id)
+  @OneToMany(() => TratativaAdmin, (tratativaAdmin) => tratativaAdmin.origin_user_id)
   tratativasAdmin: TratativaAdmin[];
 
   @OneToMany(() => TratativaAdmin, (tratativaAdmin) => tratativaAdmin.solved_by_id)
