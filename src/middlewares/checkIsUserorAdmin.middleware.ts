@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { getRepository } from 'typeorm';
 import { ErrorHandler } from '../services/errors';
 
-const checkIsUserorAdminMiddleware = (entity) => async (req:Request, _res:Response, next: NextFunction) => {
+const checkIsUserOrAdminMiddleware = (entity) => async (req:Request, _res:Response, next: NextFunction) => {
     try {
         const userBook : any = await getRepository(entity).findOne(req.params.id);
         const { user } = req;
@@ -15,4 +15,4 @@ const checkIsUserorAdminMiddleware = (entity) => async (req:Request, _res:Respon
     }
 };
 
-export default checkIsUserorAdminMiddleware;
+export default checkIsUserOrAdminMiddleware;

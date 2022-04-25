@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import {
-   isAdmin, verifyAuth, validateShape, checkUniqueTitleAndIsbnBook, checkIsUserorAdminMiddleware,
+   isAdmin, verifyAuth, validateShape, checkUniqueTitleAndIsbnBook, checkIsUserOrAdminMiddleware,
    } from '../../middlewares';
 import {
   createBookController,
@@ -20,6 +20,6 @@ routesBooks.get('', verifyAuth, getBooksController);
 routesBooks.get('/:id', verifyAuth, getBookController);
 
 routesBooks.delete('/:id', verifyAuth, isAdmin, deleteBookController);
-routesBooks.patch('/:id', verifyAuth, checkIsUserorAdminMiddleware, updateBookController);
+routesBooks.patch('/:id', verifyAuth, checkIsUserOrAdminMiddleware, updateBookController);
 
 export default routesBooks;
