@@ -11,6 +11,7 @@ interface IpostsRepo {
   findPost:(id:string)=>Promise<Posts>;
   findPosts:()=>Promise<Array<Posts>>;
   findPostsByAuthor:(id:string)=>Promise<Array<Posts>>;
+  findPostsByBook:(id:string)=>Promise<Array<Posts>>;
   updatePost:(dataPost:IdataUpdatePosts, update:IdataUpdatePosts)=>Promise<UpdateResult>;
   deletePost:(dataPost:IdataUpdatePosts)=>Promise<DeleteResult>;
 }

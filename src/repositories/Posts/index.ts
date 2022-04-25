@@ -17,6 +17,8 @@ class PostsRepository implements IpostsRepo {
 
   findPostsByAuthor = async (id: string) => await this.ormPostsRepo.find({ where: { author_id: { id } } });
 
+  findPostsByBook = async (id: string) => await this.ormPostsRepo.find({ where: { book_id: { id }, visible: true } });
+
   findPosts = async () => await this.ormPostsRepo.find();
 
   updatePost = async (dataPost: IdataUpdatePosts, update: IdataUpdatePosts) => await this.ormPostsRepo.update(dataPost, update);
