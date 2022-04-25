@@ -6,6 +6,7 @@ import {
 } from 'typeorm';
 
 import { TratativaAdmin } from './TratativaAdmin';
+import { Books } from './Books';
 import { UserBooks } from './UserBooks';
 import { Posts } from './Posts';
 
@@ -46,4 +47,7 @@ export class Users {
 
   @OneToMany(() => Posts, (posts) => posts.user_id)
   posts: Posts[];
+
+  @OneToMany(() => Books, (books) => books.user_id)
+  books: Books[];
 }
