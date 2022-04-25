@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { verifyAuth, validateShape, checkMySelfMiddleware } from '../../middlewares';
+import { verifyAuth, validateShape, checkIsUserorAdminMiddleware } from '../../middlewares';
 import { userBookShape } from '../../shapes';
 import {
      createUserBookController, getUserBookController, UpdateUserBooksController, deleteUserBookController,
@@ -10,7 +10,7 @@ import { UserBooks } from '../../entities/UserBooks';
 const routesUserBooks = Router();
 routesUserBooks.post('', verifyAuth, validateShape(userBookShape), createUserBookController);
 routesUserBooks.get('/:id', verifyAuth, getUserBookController);
-routesUserBooks.patch('/:id', verifyAuth, checkMySelfMiddleware(UserBooks), UpdateUserBooksController);
-routesUserBooks.delete('/:id', verifyAuth, checkMySelfMiddleware(UserBooks), deleteUserBookController);
+routesUserBooks.patch('/:id', verifyAuth, checkIsUserorAdminMiddleware(UserBooks), UpdateUserBooksController);
+routesUserBooks.delete('/:id', verifyAuth, checkIsUserorAdminMiddleware(UserBooks), deleteUserBookController);
 
 export default routesUserBooks;

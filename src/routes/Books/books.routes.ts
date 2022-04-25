@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { isAdmin, verifyAuth } from '../../middlewares';
+import { isAdmin, verifyAuth, checkIsUserorAdminMiddleware } from '../../middlewares';
 import {
   deleteBookController,
   updateBookController,
@@ -9,6 +9,6 @@ import {
 const routesBooks = Router();
 
 routesBooks.delete('/:id', verifyAuth, isAdmin, deleteBookController);
-routesBooks.patch('/:id', verifyAuth, isAdmin, updateBookController);
+routesBooks.patch('/:id', verifyAuth, checkIsUserorAdminMiddleware, updateBookController);
 
 export default routesBooks;
