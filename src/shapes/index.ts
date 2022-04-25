@@ -1,6 +1,7 @@
 import authorShape from './author.shape';
 import authorUpdateShape from './authorUpdate.shape';
 import userBookShape from './userBook.shape';
+import userBookUpdateShape from './userBookUpdate.shape';
 import userShape from './user.shape';
 import loginShape from './login.shape';
 import genreShape from './genre.shape';
@@ -11,6 +12,7 @@ export {
   authorUpdateShape,
   userShape,
   userBookShape,
+  userBookUpdateShape,
   loginShape,
   genreShape,
   bookShape,
