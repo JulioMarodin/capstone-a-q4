@@ -1,12 +1,20 @@
 import { Router } from 'express';
-import { verifyAuth, validateShape } from '../../middlewares';
-import { getAuthor, createAuthorController } from '../../controllers/Authors';
+import { verifyAuth, isAdmin, validateShape } from '../../middlewares';
+import {
+ getAuthor, deleteAuthor, createAuthorController, getAuthors, updateAuthorController,
+} from '../../controllers/Authors';
 import { authorShape } from '../../shapes';
 
 const routesAuthor = Router();
 
 routesAuthor.post('', validateShape(authorShape), createAuthorController);
 
-routesAuthor.get('/author/:name', verifyAuth, getAuthor);
+routesAuthor.get('/:name', verifyAuth, getAuthor);
+
+routesAuthor.get('', verifyAuth, getAuthors);
+
+routesAuthor.patch('/:name', verifyAuth, isAdmin, updateAuthorController);
+
+routesAuthor.delete('/:name', verifyAuth, isAdmin, deleteAuthor);
 
 export default routesAuthor;

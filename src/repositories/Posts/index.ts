@@ -1,8 +1,8 @@
-import { getRepository, Repository } from "typeorm";
-import { Posts } from "../../entities/Posts";
-import { IdataUpdatePosts, IpostsRepo } from "./interfaces";
+import { getRepository, Repository } from 'typeorm';
+import { Posts } from '../../entities/Posts';
+import { IdataUpdatePosts, IpostsRepo } from './interfaces';
 
-class postsRepository implements IpostsRepo {
+class PostsRepository implements IpostsRepo {
   private ormPostsRepo : Repository<Posts>;
 
   constructor() {
@@ -11,9 +11,11 @@ class postsRepository implements IpostsRepo {
 
   createPost = (post: Posts) => this.ormPostsRepo.create(post);
 
-  savePost = async (post: Posts) => await this.ormPostsRepo.save(post);
+  savePost = (post: Posts) => this.ormPostsRepo.save(post);
 
-  findPost = (id: string) => this.ormPostsRepo.findOne(id);
+  findPost = async (id: string) => await this.ormPostsRepo.findOne(id);
+
+  findPostsByAuthor = async (id: string) => await this.ormPostsRepo.find({ where: { author_id: { id } } });
 
   findPosts = async () => await this.ormPostsRepo.find();
 
@@ -22,4 +24,4 @@ class postsRepository implements IpostsRepo {
   deletePost = async (dataPost: IdataUpdatePosts) => await this.ormPostsRepo.delete(dataPost);
 }
 
-export default postsRepository;
+export default PostsRepository;

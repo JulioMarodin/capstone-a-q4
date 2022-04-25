@@ -1,25 +1,39 @@
-import { getRepository, Repository } from "typeorm";
-import { Users } from "../../entities/Users";
-import { IUsers, IdataUpdate, IusersRepo } from "./interfaces";
+import { getRepository, Repository, ILike } from 'typeorm';
+import { Users } from '../../entities/Users';
+import { IUsers, IdataUpdate, IusersRepo } from './interfaces';
 
-class usersRepository implements IusersRepo {
-    private ormRepo : Repository<Users>;
+class UsersRepository implements IusersRepo {
+  private ormRepo: Repository<Users>;
 
-    constructor() {
-        this.ormRepo = getRepository(Users);
-    }
+  constructor() {
+    this.ormRepo = getRepository(Users);
+  }
 
-    createUser = (user: IUsers) => this.ormRepo.create(user);
+  createUser = (user: IUsers) => this.ormRepo.create(user);
 
-    saveUser = async (user: IUsers) => await this.ormRepo.save(user);
+  saveUser = async (user: IUsers) => await this.ormRepo.save(user);
 
-    findUser = async (id: string) => await this.ormRepo.findOne(id);
+  findUser = async (name: string) => await this.ormRepo.findOne({
+      where: { name: ILike(`%${name}%`) },
+    });
 
-    findUsers = async () => await this.ormRepo.find();
+  findUsers = async (page: number = 0, limit: number = 15) => await this.ormRepo.find({
+      skip: page,
+      take: limit,
+      order: { name: 'ASC' },
+    });
 
-    updateUser = async (dataUser: IdataUpdate, update: IdataUpdate) => await this.ormRepo.update(dataUser, update);
+  findFilteredUsers = async (name: string, page: number = 0, limit: number = 15) => await this.ormRepo.find({
+      where: { name: ILike(`%${name}%`) },
+      skip: page,
+      take: limit,
+      order: { name: 'ASC' },
+      loadEagerRelations: false,
+    });
 
-    deleteUser = async (dataUser: IdataUpdate) => await this.ormRepo.delete(dataUser);
+  updateUser = async (dataUser: IdataUpdate, update: IdataUpdate) => await this.ormRepo.update(dataUser, update);
+
+  deleteUser = async (dataUser: IdataUpdate) => await this.ormRepo.delete(dataUser);
 }
 
-export default usersRepository;
+export default UsersRepository;

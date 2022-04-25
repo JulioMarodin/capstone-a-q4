@@ -1,5 +1,5 @@
-import { UpdateResult, DeleteResult } from "typeorm";
-import { TratativaAdmin } from "../../entities/TratativaAdmin";
+import { UpdateResult, DeleteResult } from 'typeorm';
+import { TratativaAdmin } from '../../entities/TratativaAdmin';
 
 interface IdataUpdateTratativaAdmin {
   [key:string]:string | number;

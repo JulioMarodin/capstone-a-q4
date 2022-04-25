@@ -17,6 +17,8 @@
     "import/no-unresolved": "off",
     "import/extensions":"off",
     "max-len":"off",
-    "no-return-await":"off"
+    "no-return-await":"off",
+    "arrow-body-style":"off",
+	"no-console": "off"
   }
 }
