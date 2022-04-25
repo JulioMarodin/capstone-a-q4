@@ -1,6 +1,6 @@
-import { getRepository, Repository } from "typeorm";
-import { PostLike } from "../../entities/PostLike";
-import { IdataUpdatePostLikes, IPostLikesRepo } from "./interfaces";
+import { getRepository, Repository } from 'typeorm';
+import { PostLike } from '../../entities/PostLike';
+import { IdataUpdatePostLikes, IPostLikesRepo } from './interfaces';
 
 class postsLikesRepository implements IPostLikesRepo {
   private ormPostsLikesRepo : Repository<PostLike>;

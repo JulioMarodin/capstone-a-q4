@@ -1,4 +1,5 @@
 import { AsyncMid, Mid } from './middleware.types';
+import AsyncControl from './controller.types';
 
 declare global {
   namespace Express {
@@ -15,4 +16,4 @@ declare global {
   }
 }
 
-export { AsyncMid, Mid };
+export { AsyncMid, Mid, AsyncControl };
