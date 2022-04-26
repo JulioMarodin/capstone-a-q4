@@ -15,6 +15,6 @@ const routesPublisher = Router();
 
 routesPublisher.post('', validateShape(publisherShape), verifyAuth, isAdmin, createPublisherController);
 
-routesPublisher.get('', verifyAuth, getPublisherController);
+routesPublisher.get('/:id', verifyAuth, getPublisherController);
 
 export default routesPublisher;
