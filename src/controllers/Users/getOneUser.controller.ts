@@ -17,9 +17,9 @@ const getOneUser = async (req: Request, res: Response) => {
     const readBooks = userBooks.filter((item) => item.read === true).length;
     const readingBooks = userBooks.filter((item) => item.reading === true).length;
     const wantRead = userBooks.filter((item) => item.want_to_read === true).length;
-    const review = userPosts.filter((item) => item.type_id.type === 'resenha').length;
-    const comment = userPosts.filter((item) => item.type_id.type === 'comentario').length;
-    const notes = userPosts.filter((item) => item.type_id.type === 'marcacao').length;
+    const review = userPosts.filter((item) => item.type.type === 'resenha').length;
+    const comment = userPosts.filter((item) => item.type.type === 'comentario').length;
+    const notes = userPosts.filter((item) => item.type.type === 'marcacao').length;
 
     if (!user) {
       throw new ErrorHandler(404, 'User not found');
