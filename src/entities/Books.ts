@@ -59,5 +59,5 @@ export class Books {
   genres: Genres[];
 
   @ManyToOne((type) => Users, (user) => user.id)
-  user_id: Users;
+  user: Users;
 }
