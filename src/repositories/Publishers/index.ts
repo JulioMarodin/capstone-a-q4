@@ -15,6 +15,8 @@ class PublisherRepository implements IPublishersRepo {
 
     findPublisher = async (id) => await this.ormRepo.findOne(id);
 
+    findPublisherByName = async (name: string) => await this.ormRepo.findOne({ where: { name } });
+
     findPublishers = async (page: number = 0, limit: number = 20) => await this.ormRepo.find({
         skip: page,
         take: limit,

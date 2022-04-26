@@ -17,7 +17,12 @@ class GenreRepository implements IGenres {
 
   findGenre = async (name: string) => await this.ormRepo.findOne(name);
 
-  findGenreById = async (id) => await this.ormRepo.findOne(id);
+  findGenreById = async (id: number) => await this.ormRepo.findOne(id);
+
+  // findOrCreate = async (genre: string) =>  {
+  //   const test = this.findGenre(genre)
+  //   if 
+  // }
 
   updateGenre = async (genre: IDataUpdateGenres, update: IDataUpdateGenres) => await this.ormRepo.update(genre, update);
 
