@@ -5,7 +5,7 @@ import { ErrorHandler } from '../../services/errors';
 
 const UpdateUserBooksController = async (req:Request, res:Response) => {
     try {
-        const data = await new UserBooksRepository().updateUserBooks(req.params as unknown as IData, req.body);
+        const data = await new UserBooksRepository().updateUserBooks(req.params as unknown as IData, req.validated);
         if (!data.affected) {
             throw new ErrorHandler(404, 'UserBook not found');
         }
