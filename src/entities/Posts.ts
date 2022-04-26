@@ -42,13 +42,13 @@ export class Posts {
   @Column({ default: 0 })
   total_dislike: number;
 
-  @ManyToOne((type) => Users, (user) => user.id)
+  @ManyToOne((type) => Users, (user) => user.id, { eager: true })
   user_id: Users;
 
   @ManyToOne(() => Books, (book) => book.posts)
   book: Books;
 
-  @ManyToOne((type) => PostsTypes, (post) => post.id)
+  @ManyToOne((type) => PostsTypes, (post) => post.id, { eager: true })
   type_id: PostsTypes;
 
   @ManyToOne(() => Authors, (author) => author.posts)
