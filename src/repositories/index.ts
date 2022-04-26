@@ -4,6 +4,7 @@ import UserBooksRepository from './UserBooksRepository';
 import UsersRepository from './Users';
 import GenreRepository from './Genres';
 import PostsRepository from './Posts';
+import PublisherRepository from './Publishers';
 
 export {
   AuthorsRepository,
@@ -12,4 +13,5 @@ export {
   GenreRepository,
   PostsRepository,
   UsersRepository,
+  PublisherRepository,
 };
