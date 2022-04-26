@@ -9,11 +9,12 @@ const userLogin: AsyncControl = async (req, res) => {
 
   if (!user) res.status(400).json({ error: 'E-mail and password missmatch' });
 
-  const checkablePassword = compareSync(req.validated.password, user.password);
+  const checkablePassword = compareSync(password, user.password);
 
   if (!checkablePassword) res.status(400).json({ error: 'E-mail and password missmatchyyy' });
 
   req.body.id = user.id as string;
+
   const token = signIn(req.body);
 
   res.status(200).json({ token });

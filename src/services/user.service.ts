@@ -5,7 +5,7 @@ const signIn = (data: any) => {
    const token = jwt.sign(
       { id: data.id },
       jwtConfig.secret,
-      { expiresIn: jwtConfig.expitesIn },
+      { expiresIn: jwtConfig.expiresIn },
    );
 
    return token;
