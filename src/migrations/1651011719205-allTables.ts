@@ -5,9 +5,8 @@ import { MigrationInterface, QueryRunner } from "typeorm";
 import dotenv from "dotenv";
 import { hashSync } from "bcryptjs";
 
-dotenv.config();
-export class createTables1650998871258 implements MigrationInterface {
-    name = 'createTables1650998871258';
+export class allTables1651011719205 implements MigrationInterface {
+    name = 'allTables1651011719205';
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "genres" ("id" SERIAL NOT NULL, "name" character varying(128) NOT NULL, CONSTRAINT "UQ_f105f8230a83b86a346427de94d" UNIQUE ("name"), CONSTRAINT "PK_80ecd718f0f00dde5d77a9be842" PRIMARY KEY ("id"))`);
@@ -38,20 +37,6 @@ export class createTables1650998871258 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE "books" ADD CONSTRAINT "FK_bb8627d137a861e2d5dc8d1eb20" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "books_genres_genres" ADD CONSTRAINT "FK_e1c8b5fb4c9afac80b2591b0c84" FOREIGN KEY ("booksId") REFERENCES "books"("id") ON DELETE CASCADE ON UPDATE CASCADE`);
         await queryRunner.query(`ALTER TABLE "books_genres_genres" ADD CONSTRAINT "FK_8d2218df7344c443d9ded154921" FOREIGN KEY ("genresId") REFERENCES "genres"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
-        await queryRunner.query(
-			`INSERT INTO "users"
-				("name", "email", "password", "biography", "birthday", "city", "admin")
-			VALUES (
-					'${process.env.ADMIN_NAME}',
-					'${process.env.ADMIN_EMAIL}',
-					'${hashSync(process.env.ADMIN_PASSWORD, 10)}',
-					'admin',
-					'${process.env.ADMIN_BIRTHDAY}',
-					'${process.env.ADMIN_CITY}',true)`,
-				);
-        await queryRunner.query(`INSERT INTO "posts_types" ("type", "visible") VALUES ('resenha','true')`);
-        await queryRunner.query(`INSERT INTO "posts_types" ("type", "visible") VALUES ('comentario','true')`);
-        await queryRunner.query(`INSERT INTO "posts_types" ("type", "visible") VALUES ('marcacao','false')`);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
@@ -84,4 +69,5 @@ export class createTables1650998871258 implements MigrationInterface {
         await queryRunner.query(`DROP TABLE "publishers"`);
         await queryRunner.query(`DROP TABLE "genres"`);
     }
+
 }
