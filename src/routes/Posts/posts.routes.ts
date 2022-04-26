@@ -1,9 +1,11 @@
 import { Router } from 'express';
 import { deletePost, getPosts, getPostsByAuthor } from '../../controllers/Posts';
 import getPostsByBook from '../../controllers/Posts/getPostsByBook.controller';
-import { verifyAuth } from '../../middlewares';
+import { validateShape, verifyAuth } from '../../middlewares';
 
 const routesPosts = Router();
+
+// routesPosts.post('', verifyAuth, validateShape())
 
 routesPosts.get('', verifyAuth, getPosts);
 

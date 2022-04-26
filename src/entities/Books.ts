@@ -46,13 +46,13 @@ export class Books {
   posts: Posts[];
 
   @OneToMany(() => UserBooks, (userBooks) => userBooks.book_id)
-  userBook: Promise<UserBooks[]>;
+  userBook: UserBooks[];
 
   @ManyToOne(() => Publishers, (publisher) => publisher.books)
   publisher: Publishers;
 
   @ManyToOne(() => Authors, (author) => author.books)
-  author: Promise<Authors>;
+  author: Authors;
 
   @ManyToMany(() => Genres, (genres) => genres.books)
   @JoinTable()
