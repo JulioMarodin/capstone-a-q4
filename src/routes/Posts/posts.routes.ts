@@ -7,6 +7,8 @@ import postUpdateShape from '../../shapes/postUpdate.shape';
 
 const routesPosts = Router();
 
+// routesPosts.post('', verifyAuth, validateShape())
+
 routesPosts.get('', verifyAuth, getPosts);
 
 routesPosts.get('/:author_id', verifyAuth, getPostsByAuthor);
