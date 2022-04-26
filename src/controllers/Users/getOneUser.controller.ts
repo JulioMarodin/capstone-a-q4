@@ -10,19 +10,14 @@ import { ErrorHandler } from '../../services/errors';
 const getOneUser = async (req: Request, res: Response) => {
   try {
     const user = await new UsersRepository().findUser(req.params.name);
-    const userBooks = await new UserBooksRepository().findUserBooks();
-    const teste = await new UserBooksRepository().findOneUser(user.id);
-    console.log(teste);
-    console.log(userBooks);
-    // const userPosts = await new PostsRepository().fi
+    const userBooks = await new UserBooksRepository().findUserBookById(user.id);
+    // const userPosts = await new PostsRepository().findPost()
 
     if (!user) {
       throw new ErrorHandler(404, 'User not found');
     }
 
-    const userBooksFilter = userBooks.filter(async (item) => (await item.user_id).id === user.id);
-
-    const userBookToReturn = JSON.parse(JSON.stringify(userBooksFilter));
+    const userBookToReturn = JSON.parse(JSON.stringify(userBooks));
     const userToReturn = JSON.parse(JSON.stringify(user));
     delete userBookToReturn.user_id;
     delete userBookToReturn.book_id;
