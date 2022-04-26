@@ -10,7 +10,7 @@ const UpdateUserBooksController = async (req:Request, res:Response) => {
         if (!data.affected) {
             throw new ErrorHandler(404, 'UserBook not found');
         }
-        updateBookToPostOrPatchUserBook(req.method, req.body);
+        updateBookToPostOrPatchUserBook(req.method, parseInt(req.params.id, 10));
         const userBook = await new UserBooksRepository().findUserBook({ id: parseInt(req.params.id, 10) });
         return res.status(200).json(userBook);
     } catch (error) {
