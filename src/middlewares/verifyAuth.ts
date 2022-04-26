@@ -17,7 +17,7 @@ const verifyAuth: AsyncMid = async (req, res, next) => {
     const { id } = decoded as any;
 
     // eslint-disable-next-line new-cap
-    req.user = await new usersRepository().findUser(id);
+    req.user = await new usersRepository().findUserToId(id);
     return next();
     });
   } catch (e) {

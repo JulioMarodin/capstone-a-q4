@@ -1,11 +1,15 @@
 import * as yup from 'yup';
+import { makeTitle } from '../utils';
 
 const postShape = yup.object().shape({
   visible: yup.boolean().default(() => false),
   description: yup.string().optional(),
   image: yup.string().url().optional(),
-  user_id: yup.string().uuid().required(),
-  book: yup.string().optional(),
+  book: yup
+    .string()
+    .optional()
+    .transform((tt) => makeTitle(tt)),
   type_id: yup.number().required(),
-  author_id: yup.number().optional(),
 });
+
+export default postShape;

@@ -1,13 +1,18 @@
 import { Router } from 'express';
-import { deletePost, getPosts, getPostsByAuthor } from '../../controllers/Posts';
-import getPostsByBook from '../../controllers/Posts/getPostsByBook.controller';
-import updatePost from '../../controllers/Posts/updatePost.controller';
+import {
+  createPost,
+  deletePost,
+  getPosts,
+  getPostsByAuthor,
+  getPostsByBook,
+  updatePost,
+} from '../../controllers/Posts';
 import { validateShape, verifyAuth } from '../../middlewares';
-import postUpdateShape from '../../shapes/postUpdate.shape';
+import { postShape, postUpdateShape } from '../../shapes';
 
 const routesPosts = Router();
 
-// routesPosts.post('', verifyAuth, validateShape())
+routesPosts.post('', verifyAuth, validateShape(postShape), createPost);
 
 routesPosts.get('', verifyAuth, getPosts);
 
