@@ -2,7 +2,7 @@ import { getRepository, Repository } from 'typeorm';
 import { Publishers } from '../../entities/Publishers';
 import { IPublishers, IDataUpdate, IPublishersRepo } from './interfaces';
 
-class publisherRepository implements IPublishersRepo {
+class PublisherRepository implements IPublishersRepo {
     private ormRepo : Repository<Publishers>;
 
     constructor() {
@@ -15,11 +15,15 @@ class publisherRepository implements IPublishersRepo {
 
     findPublisher = async (id) => await this.ormRepo.findOne(id);
 
-    findPublishers = async () => await this.ormRepo.find();
+    findPublishers = async (page: number = 0, limit: number = 20) => await this.ormRepo.find({
+        skip: page,
+        take: limit,
+        order: { name: 'ASC' },
+      });
 
     updatePublisher = async (dataPublisher:IDataUpdate, update:IDataUpdate) => await this.ormRepo.update(dataPublisher, update);
 
     deletePublisher = async (dataPublisher) => await this.ormRepo.delete(dataPublisher);
 }
 
-export default publisherRepository;
+export default PublisherRepository;
