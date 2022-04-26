@@ -6,10 +6,15 @@ import {
   isAdmin,
 } from '../../middlewares';
 import { publisherShape } from '../../shapes';
-import { createPublisherController } from '../../controllers/Publishers';
+import {
+  createPublisherController,
+  getPublisherController,
+} from '../../controllers/Publishers';
 
 const routesPublisher = Router();
 
 routesPublisher.post('', validateShape(publisherShape), verifyAuth, isAdmin, createPublisherController);
+
+routesPublisher.get('/:id', verifyAuth, getPublisherController);
 
 export default routesPublisher;
