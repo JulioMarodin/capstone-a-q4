@@ -4,7 +4,7 @@ import { ErrorHandler } from '../../services/errors';
 
 const updateAuthorController = async (req:Request, res:Response) => {
     try {
-        const returnUpdate = await new AuthorsRepository().updateAuthor(req.params, req.body);
+        const returnUpdate = await new AuthorsRepository().updateAuthor(req.params, req.validated);
         if (!returnUpdate.affected) {
             throw new ErrorHandler(404, 'Author not found');
         }

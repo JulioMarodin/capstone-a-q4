@@ -3,7 +3,7 @@
 /* eslint-disable class-methods-use-this */
 import { MigrationInterface, QueryRunner } from "typeorm";
 import dotenv from "dotenv";
-import { hashSync } from "bcrypt";
+import { hashSync } from "bcryptjs";
 
 dotenv.config();
 
