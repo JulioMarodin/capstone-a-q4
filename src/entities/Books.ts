@@ -18,7 +18,7 @@ export class Books {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ default: 0 })
+  @Column({ type: 'float', default: 0 })
   rating: number;
 
   @Column({ default: 0 })
@@ -44,7 +44,6 @@ export class Books {
 
   @OneToMany(() => Posts, (post) => post.book)
   posts: Posts[];
-
 
   @OneToMany(() => UserBooks, (userBooks) => userBooks.book)
   userBook: UserBooks[];
