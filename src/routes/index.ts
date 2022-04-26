@@ -7,6 +7,7 @@ import routesBooks from './Books';
 import routesGenre from './Genres';
 import routesPosts from './Posts';
 import routerLogin from './Login';
+import routesPublisher from './Publishers';
 
 const apiRouter = Router();
 
@@ -17,5 +18,5 @@ apiRouter.use('/userBooks', routesUserBooks);
 apiRouter.use('/genres', routesGenre);
 apiRouter.use('/posts', routesPosts);
 apiRouter.use('/books', routesBooks);
-
+apiRouter.use('/publishers', routesPublisher);
 export default apiRouter;
