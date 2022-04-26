@@ -19,6 +19,10 @@ class UsersRepository implements IusersRepo {
       loadEagerRelations: true,
     });
 
+  findToLogin = async (email: string) => await this.ormRepo.findOne({
+    where: { email },
+  });
+
   findUserToId = async (id: string) => await this.ormRepo.findOne({
     where: { id },
    });
