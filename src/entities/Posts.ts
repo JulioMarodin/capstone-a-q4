@@ -43,16 +43,16 @@ export class Posts {
   total_dislike: number;
 
   @ManyToOne((type) => Users, (user) => user.id, { eager: true })
-  user_id: Users;
+  user: Users;
 
   @ManyToOne(() => Books, (book) => book.posts)
   book: Books;
 
   @ManyToOne((type) => PostsTypes, (post) => post.id, { eager: true })
-  type_id: PostsTypes;
+  type: PostsTypes;
 
   @ManyToOne(() => Authors, (author) => author.posts)
-  author_id: Promise<Authors>;
+  author: Authors;
 
   @OneToMany(() => PostLike, (postlike) => postlike.post)
   postlike: PostLike[];

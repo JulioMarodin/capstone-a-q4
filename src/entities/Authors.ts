@@ -27,6 +27,6 @@ export class Authors {
   @OneToMany(() => Books, (books) => books.author, { eager: true })
   books: Books[];
 
-  @OneToMany(() => Posts, (post) => post.author_id, { eager: true })
+  @OneToMany(() => Posts, (post) => post.author, { eager: true })
   posts: Posts[];
 }
