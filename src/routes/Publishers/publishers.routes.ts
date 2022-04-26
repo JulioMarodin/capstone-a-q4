@@ -11,6 +11,7 @@ import {
   deletePublisherController,
   getAllPublishersController,
   getPublisherController,
+  updatePublisherController,
 } from '../../controllers/Publishers';
 
 const routesPublisher = Router();
@@ -22,5 +23,7 @@ routesPublisher.get('/:id', verifyAuth, getPublisherController);
 routesPublisher.get('', verifyAuth, getAllPublishersController);
 
 routesPublisher.delete('/:id', verifyAuth, isAdmin, deletePublisherController);
+
+routesPublisher.patch('/:id', verifyAuth, isAdmin, validateShape(publisherShape), updatePublisherController);
 
 export default routesPublisher;
