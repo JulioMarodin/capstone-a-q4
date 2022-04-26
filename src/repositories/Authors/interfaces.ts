@@ -1,11 +1,11 @@
 import { UpdateResult, DeleteResult } from 'typeorm';
 
 interface IAuthor {
-    id:number;
+    id?:number;
     name:string;
-    country:string;
-    birthday:Date;
-    death_date:Date;
+    country?:string;
+    birthday?:Date;
+    death_date?:Date;
 }
 
 interface IdataUpdate {
