@@ -17,6 +17,7 @@ interface IUserBooksRepo {
     createUserBooks: (data:IUserBooks)=>IUserBooks;
     saveUserBooks: (data:IUserBooks)=>void;
     findUserBook: (data:IData)=>Promise<IUserBooks>;
+		findUserBookById:(id:string)=>Promise<Array<IUserBooks>>;
     findUserBooks: ()=>Promise<Array<IUserBooks>>;
     updateUserBooks: (data:IData, dataChange:IData)=>Promise<UpdateResult>;
     deleteUserBooks: (data:IData)=>Promise<DeleteResult>;
