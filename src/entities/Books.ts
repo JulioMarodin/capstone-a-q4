@@ -58,6 +58,6 @@ export class Books {
   @JoinTable()
   genres: Genres[];
 
-  @ManyToOne((type) => Users, (user) => user.id)
-  user_id: Users;
+  // @ManyToOne((type) => Users, (user) => user.id)
+  // user_id: Users;
 }

@@ -13,7 +13,7 @@ class booksRepository implements IbooksRepo {
 
     saveBook = async (book:IBooks) => await this.ormBooksRepo.save(book);
 
-    findBook = async (id:string) => await this.ormBooksRepo.findOne(id);
+    findBook = async (id:number) => await this.ormBooksRepo.findOne(id);
 
     findBooks = async () => await this.ormBooksRepo.find();
 

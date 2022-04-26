@@ -48,6 +48,6 @@ export class Users {
   @OneToMany(() => Posts, (posts) => posts.user_id)
   posts: Posts[];
 
-  @OneToMany(() => Books, (books) => books.user_id)
-  books: Books[];
+  // @OneToMany(() => Books, (books) => books.user_id)
+  // books: Books[];
 }

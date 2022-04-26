@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { updateBookToPostOrPatchUserBook } from '../../services';
 import { UserBooksRepository } from '../../repositories';
 import { IData } from '../../repositories/UserBooksRepository/interfaces';
 import { ErrorHandler } from '../../services/errors';
@@ -9,6 +10,7 @@ const UpdateUserBooksController = async (req:Request, res:Response) => {
         if (!data.affected) {
             throw new ErrorHandler(404, 'UserBook not found');
         }
+        updateBookToPostOrPatchUserBook(req.method, req.body);
         const userBook = await new UserBooksRepository().findUserBook({ id: parseInt(req.params.id, 10) });
         return res.status(200).json(userBook);
     } catch (error) {
