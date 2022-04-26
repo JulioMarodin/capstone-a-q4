@@ -10,6 +10,7 @@ import {
   createPublisherController,
   getAllPublishersController,
   getPublisherController,
+  updatePublisherController,
 } from '../../controllers/Publishers';
 
 const routesPublisher = Router();
@@ -19,5 +20,7 @@ routesPublisher.post('', validateShape(publisherShape), verifyAuth, isAdmin, cre
 routesPublisher.get('/:id', verifyAuth, getPublisherController);
 
 routesPublisher.get('', verifyAuth, getAllPublishersController);
+
+routesPublisher.patch('/:id', verifyAuth, isAdmin, validateShape(publisherShape), updatePublisherController);
 
 export default routesPublisher;
