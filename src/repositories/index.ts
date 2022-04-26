@@ -12,6 +12,7 @@ export {
   UserBooksRepository,
   GenreRepository,
   PostsRepository,
+  PublisherRepository,
   UsersRepository,
   PublisherRepository,
 };

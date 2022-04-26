@@ -11,6 +11,7 @@ import { Publishers } from './Publishers';
 import { Posts } from './Posts';
 import { Authors } from './Authors';
 import { UserBooks } from './UserBooks';
+import { Users } from './Users';
 
 @Entity('books')
 export class Books {
@@ -56,4 +57,7 @@ export class Books {
   @ManyToMany(() => Genres, (genres) => genres.books)
   @JoinTable()
   genres: Genres[];
+
+  @ManyToOne((type) => Users, (user) => user.id)
+  user_id: Users;
 }
