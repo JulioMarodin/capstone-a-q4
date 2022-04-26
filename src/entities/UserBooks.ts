@@ -29,8 +29,8 @@ favorites: boolean;
 rating: number;
 
 @ManyToOne(() => Users, (user) => user.id, { eager: true })
-user_id: Promise<Users>;
+user: Users;
 
 @ManyToOne(() => Books, (book) => book.id, { eager: true })
-book_id: Promise<Books>;
+book: Books;
 }

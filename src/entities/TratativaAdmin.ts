@@ -24,8 +24,8 @@ export class TratativaAdmin {
     endpoint: string;
 
   @ManyToOne((type) => Users, (user) => user.id)
-  origin_user_id: Users;
+  origin_user: Users;
 
   @ManyToOne((type) => Users, (user) => user.id)
-  solved_by_id: Users;
+  solved_by: Users;
 }
