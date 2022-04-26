@@ -36,18 +36,18 @@ export class Users {
   @Column({ default: false })
   admin: boolean;
 
-  @OneToMany(() => TratativaAdmin, (tratativaAdmin) => tratativaAdmin.origin_user_id)
+  @OneToMany(() => TratativaAdmin, (tratativaAdmin) => tratativaAdmin.origin_user)
   tratativasAdmin: TratativaAdmin[];
 
-  @OneToMany(() => TratativaAdmin, (tratativaAdmin) => tratativaAdmin.solved_by_id)
+  @OneToMany(() => TratativaAdmin, (tratativaAdmin) => tratativaAdmin.solved_by)
   solvedTratativasAdmin: TratativaAdmin[];
 
-  @OneToMany(() => UserBooks, (userBooks) => userBooks.user_id)
+  @OneToMany(() => UserBooks, (userBooks) => userBooks.user)
   userBooks: Promise<UserBooks[]>;
 
-  @OneToMany(() => Posts, (posts) => posts.user_id)
+  @OneToMany(() => Posts, (posts) => posts.user)
   posts: Posts[];
 
-  @OneToMany(() => Books, (books) => books.user_id)
+  @OneToMany(() => Books, (books) => books.user)
   books: Books[];
 }

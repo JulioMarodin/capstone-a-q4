@@ -45,7 +45,7 @@ export class Books {
   @OneToMany(() => Posts, (post) => post.book)
   posts: Posts[];
 
-  @OneToMany(() => UserBooks, (userBooks) => userBooks.book_id)
+  @OneToMany(() => UserBooks, (userBooks) => userBooks.book)
   userBook: Promise<UserBooks[]>;
 
   @ManyToOne(() => Publishers, (publisher) => publisher.books)
@@ -59,5 +59,5 @@ export class Books {
   genres: Genres[];
 
   @ManyToOne((type) => Users, (user) => user.id)
-  user_id: Users;
+  user: Users;
 }
