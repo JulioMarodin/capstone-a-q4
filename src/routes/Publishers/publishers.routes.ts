@@ -8,6 +8,7 @@ import {
 import { publisherShape } from '../../shapes';
 import {
   createPublisherController,
+  deletePublisherController,
   getAllPublishersController,
   getPublisherController,
 } from '../../controllers/Publishers';
@@ -19,5 +20,7 @@ routesPublisher.post('', validateShape(publisherShape), verifyAuth, isAdmin, cre
 routesPublisher.get('/:id', verifyAuth, getPublisherController);
 
 routesPublisher.get('', verifyAuth, getAllPublishersController);
+
+routesPublisher.delete('/:id', verifyAuth, isAdmin, deletePublisherController);
 
 export default routesPublisher;
