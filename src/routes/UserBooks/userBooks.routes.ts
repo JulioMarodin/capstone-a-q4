@@ -2,7 +2,10 @@ import { Router } from 'express';
 
 
 import {
-  verifyAuth, validateShape, isAdminOrCreator, checkUniqueUserBook,
+  verifyAuth,
+  validateShape,
+  isAdminOrCreator,
+  checkUniqueUserBook,
 } from '../../middlewares';
 import { userBookShape, userBookUpdateShape } from '../../shapes';
 import {
@@ -19,6 +22,7 @@ routesUserBooks.get('/:id', verifyAuth, getUserBookController);
 routesUserBooks.patch(
   '/:id',
   verifyAuth,
+  isAdminOrCreator,
   validateShape(userBookUpdateShape),
   UpdateUserBooksController,
 );
