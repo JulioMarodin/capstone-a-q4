@@ -3,7 +3,7 @@ import { Posts } from '../../entities/Posts';
 import { IdataUpdatePosts, IpostsRepo } from './interfaces';
 
 class PostsRepository implements IpostsRepo {
-  private ormPostsRepo : Repository<Posts>;
+  private ormPostsRepo: Repository<Posts>;
 
   constructor() {
     this.ormPostsRepo = getRepository(Posts);
@@ -15,9 +15,13 @@ class PostsRepository implements IpostsRepo {
 
   findPost = async (id: string) => await this.ormPostsRepo.findOne(id);
 
-  findPostsByAuthor = async (id: string) => await this.ormPostsRepo.find({ where: { author_id: { id } } });
+  findPostsByAuthor = async (id: string) => await this.ormPostsRepo.find({ where: { author: { id }, visible: true } });
 
-  findPosts = async () => await this.ormPostsRepo.find();
+  findPostsByUser = async (id: string) => await this.ormPostsRepo.find({ where: { user: { id } } });
+
+  findPostsByBook = async (id: string) => await this.ormPostsRepo.find({ where: { book: { id }, visible: true } });
+
+  findPosts = async () => await this.ormPostsRepo.find({ where: { visible: true } });
 
   updatePost = async (dataPost: IdataUpdatePosts, update: IdataUpdatePosts) => await this.ormPostsRepo.update(dataPost, update);
 

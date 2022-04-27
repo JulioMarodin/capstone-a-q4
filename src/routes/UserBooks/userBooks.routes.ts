@@ -1,16 +1,27 @@
 import { Router } from 'express';
 
-import { verifyAuth, validateShape, checkIsUserOrAdminMiddleware } from '../../middlewares';
-import { userBookShape } from '../../shapes';
+
 import {
-     createUserBookController, getUserBookController, UpdateUserBooksController, deleteUserBookController,
-     } from '../../controllers/UserBooks';
+  verifyAuth, validateShape, isAdminOrCreator, checkUniqueUserBook,
+} from '../../middlewares';
+import { userBookShape, userBookUpdateShape } from '../../shapes';
+import {
+  createUserBookController,
+  getUserBookController,
+  UpdateUserBooksController,
+  deleteUserBookController,
+} from '../../controllers/UserBooks';
 import { UserBooks } from '../../entities/UserBooks';
 
 const routesUserBooks = Router();
-routesUserBooks.post('', verifyAuth, validateShape(userBookShape), createUserBookController);
+routesUserBooks.post('', verifyAuth, validateShape(userBookShape), checkUniqueUserBook, createUserBookController);
 routesUserBooks.get('/:id', verifyAuth, getUserBookController);
-routesUserBooks.patch('/:id', verifyAuth, checkIsUserOrAdminMiddleware(UserBooks), UpdateUserBooksController);
-routesUserBooks.delete('/:id', verifyAuth, checkIsUserOrAdminMiddleware(UserBooks), deleteUserBookController);
+routesUserBooks.patch(
+  '/:id',
+  verifyAuth,
+  validateShape(userBookUpdateShape),
+  UpdateUserBooksController,
+);
+routesUserBooks.delete('/:id', verifyAuth, isAdminOrCreator(UserBooks), deleteUserBookController);
 
 export default routesUserBooks;

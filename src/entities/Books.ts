@@ -11,13 +11,14 @@ import { Publishers } from './Publishers';
 import { Posts } from './Posts';
 import { Authors } from './Authors';
 import { UserBooks } from './UserBooks';
+import { Users } from './Users';
 
 @Entity('books')
 export class Books {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ default: 0 })
+  @Column({ type: 'float', default: 0 })
   rating: number;
 
   @Column({ default: 0 })
@@ -44,16 +45,19 @@ export class Books {
   @OneToMany(() => Posts, (post) => post.book)
   posts: Posts[];
 
-  @OneToMany(() => UserBooks, (userBooks) => userBooks.book_id)
+  @OneToMany(() => UserBooks, (userBooks) => userBooks.book)
   userBook: Promise<UserBooks[]>;
 
   @ManyToOne(() => Publishers, (publisher) => publisher.books)
   publisher: Publishers;
 
-  @ManyToOne(() => Authors, (author) => author.books)
+  @ManyToOne(() => Authors, (author) => author.books, { lazy: true })
   author: Promise<Authors>;
 
   @ManyToMany(() => Genres, (genres) => genres.books)
   @JoinTable()
   genres: Genres[];
+
+  @ManyToOne((type) => Users, (user) => user.books)
+  user: Users;
 }

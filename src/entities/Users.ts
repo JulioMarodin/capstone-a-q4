@@ -6,6 +6,7 @@ import {
 } from 'typeorm';
 
 import { TratativaAdmin } from './TratativaAdmin';
+import { Books } from './Books';
 import { UserBooks } from './UserBooks';
 import { Posts } from './Posts';
 
@@ -17,7 +18,7 @@ export class Users {
   @Column({ length: 128 })
     name: string;
 
-  @Column({ length: 128 })
+  @Column({ length: 128, unique: true })
     email: string;
 
   @Column()
@@ -35,15 +36,18 @@ export class Users {
   @Column({ default: false })
   admin: boolean;
 
-  @OneToMany((type) => TratativaAdmin, (tratativaAdmin) => tratativaAdmin.origin_user_id)
+  @OneToMany(() => TratativaAdmin, (tratativaAdmin) => tratativaAdmin.origin_user)
   tratativasAdmin: TratativaAdmin[];
 
-  @OneToMany(() => TratativaAdmin, (tratativaAdmin) => tratativaAdmin.solved_by_id)
+  @OneToMany(() => TratativaAdmin, (tratativaAdmin) => tratativaAdmin.solved_by)
   solvedTratativasAdmin: TratativaAdmin[];
 
-  @OneToMany(() => UserBooks, (userBooks) => userBooks.user_id)
-  userBooks: Promise<UserBooks[]>;
+  @OneToMany(() => UserBooks, (userBooks) => userBooks.user)
+  userBooks: UserBooks;
 
-  @OneToMany(() => Posts, (posts) => posts.user_id)
+  @OneToMany(() => Posts, (posts) => posts.user)
   posts: Posts[];
+
+  @OneToMany(() => Books, (books) => books.user)
+  books: Books[];
 }
