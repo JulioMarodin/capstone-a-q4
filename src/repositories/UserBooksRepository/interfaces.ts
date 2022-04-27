@@ -1,12 +1,16 @@
 import { UpdateResult, DeleteResult } from 'typeorm';
+import { IUsers } from '../Users/interfaces';
+import {IBooks} from '../Books/interfaces';
 
 interface IUserBooks {
-  id: number;
+  id?: number;
   read: boolean;
   reading: boolean;
   want_to_read: boolean;
   favorites: boolean;
   rating: number;
+  user: any;
+  book: any;
 }
 
 interface IData {
