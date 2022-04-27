@@ -8,7 +8,7 @@ const updateBookController = async (req:Request, res:Response) => {
         if (!data.affected) {
             throw new ErrorHandler(404, 'Book not found');
         }
-        const book = await new BooksRepository().findBook(req.params.id);
+        const book = await new BooksRepository().findBook(Number(req.params.id));
         return res.status(200).json(book);
     } catch (err) {
         return res.status(err.statusCode).json({ err: err.message });
