@@ -12,8 +12,7 @@ import getBookController from '../../controllers/Books/getBook.controller';
 
 const routesBooks = Router();
 
-// routesBooks.post('', verifyAuth, validateShape(bookShape), checkUniqueTitleAndIsbnBook, createBookController);
-routesBooks.post('', validateShape(bookShape), checkUniqueTitleAndIsbnBook, createBookController);
+routesBooks.post('', verifyAuth, isAdmin, validateShape(bookShape), checkUniqueTitleAndIsbnBook, createBookController);
 
 routesBooks.get('', verifyAuth, getBooksController);
 
