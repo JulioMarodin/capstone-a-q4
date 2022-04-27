@@ -3,7 +3,6 @@ import { AnySchema } from 'yup';
 
 const validateShape = (shape: AnySchema) => async (req: Request, res: Response, next: NextFunction) => {
   try {
-    console.log('AQUI', req.user.id);
     if (req.user) req.body.user_id = req.user.id;
     const validated = await shape.validate(req.body, {
       abortEarly: false,
