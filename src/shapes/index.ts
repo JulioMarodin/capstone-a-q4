@@ -7,6 +7,7 @@ import userUpdateShape from './userUpdate.shape';
 import loginShape from './login.shape';
 import genreShape from './genre.shape';
 import bookShape from './books.shape';
+import bookUpdateShape from './bookUpdate.shape';
 import publisherShape from './publisher.shape';
 import postShape from './post.shape';
 import postUpdateShape from './postUpdate.shape';
@@ -22,6 +23,7 @@ export {
   loginShape,
   genreShape,
   bookShape,
+  bookUpdateShape,
   publisherShape,
   postShape,
   postUpdateShape,
