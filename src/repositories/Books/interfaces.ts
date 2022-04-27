@@ -20,6 +20,7 @@ interface IbooksRepo {
     createBook:(book:IBooks)=>IBooks;
     saveBook:(book:IBooks)=>void;
     findBook:(id:string)=>Promise<IBooks>;
+    findBookByName:(title:string)=>Promise<IBooks>;
     findBooks:()=>Promise<Array<IBooks>>;
     updateBook:(dataBook:IdataUpdateBooks, update:IdataUpdateBooks)=>Promise<UpdateResult>;
     deleteBook:(dataBook:IdataUpdateBooks)=>Promise<DeleteResult>;

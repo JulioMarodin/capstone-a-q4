@@ -15,6 +15,10 @@ class booksRepository implements IbooksRepo {
 
     findBook = async (id:string) => await this.ormBooksRepo.findOne(id);
 
+    findBookByName = async (title:string) => {
+        return await this.ormBooksRepo.findOne({ where: { title } });
+    };
+
     findBooks = async () => await this.ormBooksRepo.find();
 
     updateBook = async (dataBook:IdataUpdateBooks, update:IdataUpdateBooks) => await this.ormBooksRepo.update(dataBook, update);

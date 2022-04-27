@@ -8,6 +8,8 @@ import loginShape from './login.shape';
 import genreShape from './genre.shape';
 import bookShape from './books.shape';
 import publisherShape from './publisher.shape';
+import postShape from './post.shape';
+import postUpdateShape from './postUpdate.shape';
 
 export {
   authorShape,
@@ -20,4 +22,6 @@ export {
   genreShape,
   bookShape,
   publisherShape,
+  postShape,
+  postUpdateShape,
 };
