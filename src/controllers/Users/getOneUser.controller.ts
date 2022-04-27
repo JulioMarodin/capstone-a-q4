@@ -9,7 +9,7 @@ import { ErrorHandler } from '../../services/errors';
 
 const getOneUser = async (req: Request, res: Response) => {
   try {
-    const user = await new UsersRepository().findUser(req.params.name);
+    const user = await new UsersRepository().findUserToId(req.params.name);
     const userBooks = await new UserBooksRepository().findUserBookById(user.id);
     const userPosts = await new PostsRepository().findPostsByUser(user.id);
 
@@ -56,7 +56,6 @@ const getOneUser = async (req: Request, res: Response) => {
       delete item.__book_id__;
     });
     delete userToReturn.password;
-
     return res.status(200).json({
       user: userToReturn,
       relational_books: relationalBooks,
