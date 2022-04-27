@@ -26,4 +26,6 @@ routesTratativaAdmin.delete('/:id', verifyAuth, isAdmin, deleteTratativaAdminCon
 
 routesTratativaAdmin.patch('/:id', verifyAuth, isAdmin, validateShape(tratativaAdminShape), updateTratativaAdminController);
 
+// get não lidas
+
 export default routesTratativaAdmin;

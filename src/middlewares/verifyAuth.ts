@@ -13,7 +13,9 @@ const verifyAuth: AsyncMid = async (req, res, next) => {
     if (!token) res.status(201).json({ error: 'Missing authorization headers' });
 
     jwt.verify(token, secret, async (err, decoded) => {
-    if (err) res.status(401).json({ error: 'Invalid acess token' });
+    if (err) {
+      return res.status(401).json({ error: 'Invalid acess token' });
+    }
     const { id } = decoded as any;
 
     // eslint-disable-next-line new-cap
