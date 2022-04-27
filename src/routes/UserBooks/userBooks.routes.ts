@@ -1,6 +1,8 @@
 import { Router } from 'express';
 
-import { verifyAuth, validateShape, isAdminOrCreator } from '../../middlewares';
+import {
+  verifyAuth, validateShape, isAdminOrCreator, checkUniqueUserBook,
+} from '../../middlewares';
 import { userBookShape, userBookUpdateShape } from '../../shapes';
 import {
   createUserBookController,
@@ -11,7 +13,7 @@ import {
 import { UserBooks } from '../../entities/UserBooks';
 
 const routesUserBooks = Router();
-routesUserBooks.post('', verifyAuth, validateShape(userBookShape), createUserBookController);
+routesUserBooks.post('', verifyAuth, validateShape(userBookShape), checkUniqueUserBook, createUserBookController);
 routesUserBooks.get('/:id', verifyAuth, getUserBookController);
 routesUserBooks.patch(
   '/:id',
