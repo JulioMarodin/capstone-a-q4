@@ -2,7 +2,7 @@ import { getRepository, Repository } from 'typeorm';
 import { TratativaAdmin } from '../../entities/TratativaAdmin';
 import { IdataUpdateTratativaAdmin, ITratativaAdminRepo } from './interfaces';
 
-class tratativaAdminRepository implements ITratativaAdminRepo {
+class TratativaAdminRepository implements ITratativaAdminRepo {
   private ormTratativaAdminsRepo : Repository<TratativaAdmin>;
 
   constructor() {
@@ -13,7 +13,7 @@ class tratativaAdminRepository implements ITratativaAdminRepo {
 
   saveTratativaAdmin = async (tratativaAdmin: TratativaAdmin) => await this.ormTratativaAdminsRepo.save(tratativaAdmin);
 
-  findTratativaAdmin = (id: number) => this.ormTratativaAdminsRepo.findOne(id);
+  findTratativaAdmin = (id) => this.ormTratativaAdminsRepo.findOne(id);
 
   findTratativaAdmins = async () => await this.ormTratativaAdminsRepo.find();
 
@@ -22,4 +22,4 @@ class tratativaAdminRepository implements ITratativaAdminRepo {
   deleteTratativaAdmin = async (dataTratativaAdmin: IdataUpdateTratativaAdmin) => await this.ormTratativaAdminsRepo.delete(dataTratativaAdmin);
 }
 
-export default tratativaAdminRepository;
+export default TratativaAdminRepository;

@@ -17,7 +17,7 @@ export class TratativaAdmin {
   @Column({ nullable: false })
     description: string;
 
-  @Column()
+  @Column({ nullable: true })
     resolution: string;
 
   @Column({ nullable: false })
@@ -26,6 +26,6 @@ export class TratativaAdmin {
   @ManyToOne((type) => Users, (user) => user.id)
   origin_user: Users;
 
-  @ManyToOne((type) => Users, (user) => user.id)
+  @ManyToOne((type) => Users, (user) => user.id, { nullable: true })
   solved_by: Users;
 }
