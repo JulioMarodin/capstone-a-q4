@@ -17,6 +17,10 @@ class TratativaAdminRepository implements ITratativaAdminRepo {
 
   findTratativaAdmins = async () => await this.ormTratativaAdminsRepo.find();
 
+  findTratativaAdminsNotRead = async () => await this.ormTratativaAdminsRepo.find({ where: { sorted_out: false} });
+
+  findTratativaAdminsRead = async () => await this.ormTratativaAdminsRepo.find({ where: { sorted_out: true} });
+
   updateTratativaAdmin = async (dataTratativaAdmin: IdataUpdateTratativaAdmin, update: IdataUpdateTratativaAdmin) => await this.ormTratativaAdminsRepo.update(dataTratativaAdmin, update);
 
   deleteTratativaAdmin = async (dataTratativaAdmin: IdataUpdateTratativaAdmin) => await this.ormTratativaAdminsRepo.delete(dataTratativaAdmin);

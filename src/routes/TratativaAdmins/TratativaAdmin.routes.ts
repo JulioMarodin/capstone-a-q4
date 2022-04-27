@@ -10,6 +10,8 @@ import {
   createTratativaAdminController,
   deleteTratativaAdminController,
   getAllTratativaAdminController,
+  getAllTratativaAdminNotReadController,
+  getAllTratativaAdminReadController,
   getTratativaAdminController,
   updateTratativaAdminController,
 } from '../../controllers/TratativaAdmins';
@@ -17,6 +19,10 @@ import {
 const routesTratativaAdmin = Router();
 
 routesTratativaAdmin.post('', verifyAuth, validateShape(tratativaAdminShape), createTratativaAdminController);
+
+routesTratativaAdmin.get('/read', verifyAuth, isAdmin, getAllTratativaAdminReadController);
+
+routesTratativaAdmin.get('/notRead', verifyAuth, isAdmin, getAllTratativaAdminNotReadController);
 
 routesTratativaAdmin.get('/:id', verifyAuth, isAdmin, getTratativaAdminController);
 
