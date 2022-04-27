@@ -51,8 +51,8 @@ export class Books {
   @ManyToOne(() => Publishers, (publisher) => publisher.books)
   publisher: Publishers;
 
-  @ManyToOne(() => Authors, (author) => author.books)
-  author: Authors;
+  @ManyToOne(() => Authors, (author) => author.books, { lazy: true })
+  author: Promise<Authors>;
 
   @ManyToMany(() => Genres, (genres) => genres.books)
   @JoinTable()

@@ -1,25 +1,17 @@
 import { getRepository, Repository } from 'typeorm';
-import { Publishers } from '../../entities/Publishers';
-import { IPublishers, IDataUpdate, IPublishersRepo } from './interfaces';
+import { PostsTypes } from '../../entities/PostsTypes';
+import { IPostsTypes, IDataUpdate, IPostsTypesRepo } from './interfaces';
 
-class publisherRepository implements IPublishersRepo {
-    private ormRepo : Repository<Publishers>;
+class PostsTypesRepository implements IPostsTypesRepo {
+    private ormRepo : Repository<PostsTypes>;
 
     constructor() {
-        this.ormRepo = getRepository(Publishers);
+        this.ormRepo = getRepository(PostsTypes);
     }
 
-    createPublisher = (publisher: IPublishers) => this.ormRepo.create(publisher);
+    findPostType = async (id: number) => await this.ormRepo.findOne(id);
 
-    savePublisher = async (publisher: IPublishers) => await this.ormRepo.save(publisher);
-
-    findPublisher = async (id) => await this.ormRepo.findOne(id);
-
-    findPublishers = async () => await this.ormRepo.find();
-
-    updatePublisher = async (dataPublisher:IDataUpdate, update:IDataUpdate) => await this.ormRepo.update(dataPublisher, update);
-
-    deletePublisher = async (dataPublisher) => await this.ormRepo.delete(dataPublisher);
+    findPostsTypes = async () => await this.ormRepo.find();
 }
 
-export default publisherRepository;
+export default PostsTypesRepository;

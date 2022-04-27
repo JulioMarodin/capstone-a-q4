@@ -12,7 +12,7 @@ export {
   verifyAuth,
   isAdmin,
   checkUnique,
-   isAdminOrCreator,
+  isAdminOrCreator,
   checkUniqueTitleAndIsbnBook,
   checkUpdateUser,
   checkUniqueUserBook,

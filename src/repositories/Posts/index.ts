@@ -15,11 +15,11 @@ class PostsRepository implements IpostsRepo {
 
   findPost = async (id: string) => await this.ormPostsRepo.findOne(id);
 
-  findPostsByAuthor = async (id: string) => await this.ormPostsRepo.find({ where: { author_id: { id } } });
+  findPostsByAuthor = async (id: string) => await this.ormPostsRepo.find({ where: { author: { id } } });
 
-  findPostsByUser = async (id: string) => await this.ormPostsRepo.find({ where: { user_id: { id } } });
+  findPostsByUser = async (id: string) => await this.ormPostsRepo.find({ where: { user: { id } } });
 
-  findPostsByBook = async (id: string) => await this.ormPostsRepo.find({ where: { book_id: { id }, visible: true } });
+  findPostsByBook = async (id: string) => await this.ormPostsRepo.find({ where: { book: { id }, visible: true } });
 
   findPosts = async () => await this.ormPostsRepo.find();
 

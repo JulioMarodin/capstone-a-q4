@@ -15,7 +15,7 @@ class UserBooksRepository implements IUserBooksRepo {
 
   findUserBook = async (data: IData) => await this.ormRepo.findOne({ where: data });
 
-  findUserBookById = async (id: string) => await this.ormRepo.find({ where: { user_id: { id } } });
+  findUserBookById = async (id: string) => await this.ormRepo.find({ where: { user: { id } } });
 
   findUserBooks = async () => await this.ormRepo.find();
 

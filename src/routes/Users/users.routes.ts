@@ -1,13 +1,17 @@
 import { Router } from 'express';
 
 import {
-  isAdmin, validateShape, verifyAuth, checkUpdateUser,
+  isAdmin,
+  validateShape,
+  verifyAuth,
+  checkUpdateUser,
 } from '../../middlewares';
-import { userShape } from '../../shapes';
+import { userShape, userUpdateShape } from '../../shapes';
 import {
   getUsers,
   createUserController,
   deleteUserController,
+  getOneUser,
   updateUser,
 } from '../../controllers/Users';
 
@@ -17,7 +21,9 @@ routesUsers.post('', validateShape(userShape), createUserController);
 
 routesUsers.get('', verifyAuth, getUsers);
 
-routesUsers.patch('/:id', validateShape(userShape), checkUpdateUser, updateUser);
+routesUsers.get('/:name', getOneUser);
+
+routesUsers.patch('/:id', validateShape(userUpdateShape), checkUpdateUser, updateUser);
 
 routesUsers.delete('/:id', verifyAuth, isAdmin, deleteUserController);
 

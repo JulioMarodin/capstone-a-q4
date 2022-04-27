@@ -1,21 +1,16 @@
-import { UpdateResult, DeleteResult } from 'typeorm';
-
-interface IPublishers {
-    id?:number;
-    name:string;
+interface IPostsTypes {
+    id:number;
+    type:string;
+    visible:boolean;
 }
 
 interface IDataUpdate {
     [key:string]:string;
 }
 
-interface IPublishersRepo {
-    createPublisher:(publisher:IPublishers)=>IPublishers;
-    savePublisher:(publisher:IPublishers)=>void;
-    findPublisher:(id:number)=>Promise<IPublishers>;
-    findPublishers:()=>Promise<IPublishers[]>;
-    updatePublisher:(publisher:IDataUpdate, update:IDataUpdate)=>Promise<UpdateResult>;
-    deletePublisher:(publisher:IDataUpdate)=>Promise<DeleteResult>;
+interface IPostsTypesRepo {
+    findPostType:(id:number)=>Promise<IPostsTypes>;
+    findPostsTypes:()=>Promise<IPostsTypes[]>;
 }
 
-export { IPublishers, IDataUpdate, IPublishersRepo };
+export { IPostsTypes, IDataUpdate, IPostsTypesRepo };
