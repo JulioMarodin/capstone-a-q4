@@ -17,7 +17,7 @@ import {
 
 const routesUsers = Router();
 
-routesUsers.post('', verifyAuth, validateShape(userShape), createUserController);
+routesUsers.post('', validateShape(userShape), createUserController);
 
 routesUsers.get('', verifyAuth, getUsers);
 

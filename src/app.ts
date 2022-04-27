@@ -7,7 +7,9 @@ import apiRouter from './routes';
 const app = express();
 
 app.use(json());
-app.use((err:any, _req:Request, res:Response, _next:NextFunction) => handleError(err, res));
+app.use((err:any, _req:Request, res:Response, _next:NextFunction) => {
+  return handleError(err, res);
+});
 app.use('/api', apiRouter);
 
 export default app;

@@ -1,18 +1,23 @@
 import { Response } from 'express';
+import { object } from 'yup';
 
-class ErrorHandler extends Error {
-    statusCode: number;
+class ErrorHandler {
+  public statusCode: number;
 
-    constructor(statusCode:number, message:string) {
-        super();
-        this.statusCode = statusCode;
-        this.message = message;
-    }
+  public message: string;
+
+  constructor(statusCode: number, message: string) {
+    this.statusCode = statusCode;
+    this.message = message;
+  }
 }
 
-const handleError = (err: {statusCode: number ; message: string}, res:Response) => {
-    const { statusCode, message } = err;
-    return res.status(statusCode).json({ message });
+const handleError = async (err: { statusCode: number; message: string }, res: Response) => {
+  const { statusCode, message } = err;
+  console.log(JSON.stringify(statusCode));
+  console.log(JSON.stringify(message));
+  // console.log(await statusCode, await message);
+  return res.status(statusCode).json({ message });
 };
 
 export { ErrorHandler, handleError };

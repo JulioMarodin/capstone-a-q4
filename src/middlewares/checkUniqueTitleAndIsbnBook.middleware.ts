@@ -35,6 +35,8 @@ const checkUniqueTitleAndIsbnBook = async (req: Request, res: Response, next: Ne
       req.validated.publisher = bookForPublisher;
     }
 
+    req.validated.user = req.user;
+
     console.log('geral', req.validated);
     return next();
   } catch (error) {
