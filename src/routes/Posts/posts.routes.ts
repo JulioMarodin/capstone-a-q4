@@ -20,7 +20,7 @@ routesPosts.get('/:author_id', verifyAuth, getPostsByAuthor);
 
 routesPosts.get('/:book_id', verifyAuth, getPostsByBook);
 
-routesPosts.patch('/:id', validateShape(postUpdateShape), updatePost);
+routesPosts.patch('/:id', verifyAuth, validateShape(postUpdateShape), updatePost);
 
 routesPosts.delete('/:id', verifyAuth, deletePost);
 

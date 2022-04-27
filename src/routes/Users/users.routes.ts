@@ -17,13 +17,13 @@ import {
 
 const routesUsers = Router();
 
-routesUsers.post('', validateShape(userShape), createUserController);
+routesUsers.post('', verifyAuth, validateShape(userShape), createUserController);
 
 routesUsers.get('', verifyAuth, getUsers);
 
-routesUsers.get('/:name', getOneUser);
+routesUsers.get('/:name', verifyAuth, getOneUser);
 
-routesUsers.patch('/:id', validateShape(userUpdateShape), checkUpdateUser, updateUser);
+routesUsers.patch('/:id', verifyAuth, validateShape(userUpdateShape), checkUpdateUser, updateUser);
 
 routesUsers.delete('/:id', verifyAuth, isAdmin, deleteUserController);
 
