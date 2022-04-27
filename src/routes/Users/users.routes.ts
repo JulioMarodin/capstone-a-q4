@@ -27,5 +27,5 @@ routesUsers.get('/:name', verifyAuth, getOneUser);
 routesUsers.patch('/:id', verifyAuth, validateShape(userUpdateShape), checkUpdateUser, updateUser);
 
 routesUsers.delete('/:id', verifyAuth, isAdminOrCreator(Users), deleteUserController);
-Users
+
 export default routesUsers;
