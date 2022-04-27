@@ -10,6 +10,7 @@ import bookShape from './books.shape';
 import publisherShape from './publisher.shape';
 import postShape from './post.shape';
 import postUpdateShape from './postUpdate.shape';
+import tratativaAdminShape from './tratativaAdmin.shape';
 
 export {
   authorShape,
@@ -24,4 +25,5 @@ export {
   publisherShape,
   postShape,
   postUpdateShape,
+  tratativaAdminShape,
 };

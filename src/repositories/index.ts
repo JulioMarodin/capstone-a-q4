@@ -6,6 +6,7 @@ import GenreRepository from './Genres';
 import PostsRepository from './Posts';
 import PublisherRepository from './Publishers';
 import PostsTypesRepository from './PostTypes';
+import TratativaAdminRepository from './TratativaAdmin';
 
 export {
   AuthorsRepository,
@@ -16,4 +17,5 @@ export {
   PublisherRepository,
   UsersRepository,
   PostsTypesRepository,
+  TratativaAdminRepository,
 };

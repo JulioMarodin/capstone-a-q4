@@ -39,7 +39,7 @@ export class Users {
   @OneToMany(() => TratativaAdmin, (tratativaAdmin) => tratativaAdmin.origin_user)
   tratativasAdmin: TratativaAdmin[];
 
-  @OneToMany(() => TratativaAdmin, (tratativaAdmin) => tratativaAdmin.solved_by)
+  @OneToMany(() => TratativaAdmin, (tratativaAdmin) => tratativaAdmin.solved_by, { nullable: true })
   solvedTratativasAdmin: TratativaAdmin[];
 
   @OneToMany(() => UserBooks, (userBooks) => userBooks.user)
