@@ -17,9 +17,12 @@ const getOneUser = async (req: Request, res: Response) => {
     const readBooks = userBooks.filter((item) => item.read === true).length;
     const readingBooks = userBooks.filter((item) => item.reading === true).length;
     const wantRead = userBooks.filter((item) => item.want_to_read === true).length;
-    const review = userPosts.filter((item) => item.type_id.type === 'resenha').length;
-    const comment = userPosts.filter((item) => item.type_id.type === 'comentario').length;
-    const notes = userPosts.filter((item) => item.type_id.type === 'marcacao').length;
+
+    const review = userPosts.filter((item) => item.type.type === 'resenha').length;
+    const comment = userPosts.filter((item) => item.type.type === 'comentario').length;
+    const notes = userPosts.filter((item) => item.type.type === 'marcacao').length;
+
+    console.log(userPosts);
 
     if (!user) {
       throw new ErrorHandler(404, 'User not found');
@@ -41,19 +44,17 @@ const getOneUser = async (req: Request, res: Response) => {
       notes_posts: notes,
     };
 
-    console.log(userBooks[0]);
-    console.log(relationalBooks);
-
     const userBookToReturn = JSON.parse(JSON.stringify(userBooks));
     const userToReturn = JSON.parse(JSON.stringify(user));
     delete userBookToReturn.user_id;
     delete userBookToReturn.book_id;
 
     userBookToReturn.forEach((item) => {
-      item['book_id'] = item.__book_id__.id;
-      item['user_id'] = item.__user_id__.id;
-      delete item.__user_id__;
-      delete item.__book_id__;
+      console.log(item.user.id);
+      item['book'] = item.book.id;
+      item['user'] = item.user.id;
+      delete item.user;
+      delete item.book;
     });
     delete userToReturn.password;
 
