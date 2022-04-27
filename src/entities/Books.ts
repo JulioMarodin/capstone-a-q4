@@ -18,7 +18,7 @@ export class Books {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ default: 0 })
+  @Column({ type: 'float', default: 0 })
   rating: number;
 
   @Column({ default: 0 })
@@ -45,13 +45,13 @@ export class Books {
   @OneToMany(() => Posts, (post) => post.book)
   posts: Posts[];
 
-  @OneToMany(() => UserBooks, (userBooks) => userBooks.book_id)
-  userBook: Promise<UserBooks[]>;
+  @OneToMany(() => UserBooks, (userBooks) => userBooks.book)
+  userBook: UserBooks[];
 
   @ManyToOne(() => Publishers, (publisher) => publisher.books)
   publisher: Publishers;
 
-  @ManyToOne(() => Authors, (author) => author.books)
+  @ManyToOne(() => Authors, (author) => author.books, { lazy: true })
   author: Promise<Authors>;
 
   @ManyToMany(() => Genres, (genres) => genres.books)
@@ -59,5 +59,5 @@ export class Books {
   genres: Genres[];
 
   @ManyToOne((type) => Users, (user) => user.id)
-  user_id: Users;
+  user: Users;
 }
