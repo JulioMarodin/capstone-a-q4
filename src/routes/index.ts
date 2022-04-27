@@ -14,7 +14,7 @@ const apiRouter = Router();
 
 apiRouter.use('/login', routerLogin);
 apiRouter.use('/users', routesUsers);
-apiRouter.use('/author', routesAuthor);
+apiRouter.use('/authors', routesAuthor);
 apiRouter.use('/userBooks', routesUserBooks);
 apiRouter.use('/genres', routesGenre);
 apiRouter.use('/posts', routesPosts);
