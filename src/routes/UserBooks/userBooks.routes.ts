@@ -11,10 +11,11 @@ import {
 import { UserBooks } from '../../entities/UserBooks';
 
 const routesUserBooks = Router();
-routesUserBooks.post('', validateShape(userBookShape), createUserBookController);
+routesUserBooks.post('', verifyAuth, validateShape(userBookShape), createUserBookController);
 routesUserBooks.get('/:id', verifyAuth, getUserBookController);
 routesUserBooks.patch(
   '/:id',
+  verifyAuth,
   validateShape(userBookUpdateShape),
   UpdateUserBooksController,
 );
