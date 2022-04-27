@@ -11,6 +11,7 @@ const bookShape = yup.object().shape({
     author: yup.string().required().transform((au) => makeTitle(au)),
     publisher: yup.string().required().transform((pb) => makeTitle(pb)),
     genres: yup.array().of(yup.string()).optional().transform((arr: String[]) => arr.map((genre) => genre.toLowerCase())),
+    user: yup.string().required().transform((u) => makeTitle(u)),
 });
 
 export default bookShape;

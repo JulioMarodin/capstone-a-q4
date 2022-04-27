@@ -11,7 +11,7 @@ import { Publishers } from './Publishers';
 import { Posts } from './Posts';
 import { Authors } from './Authors';
 import { UserBooks } from './UserBooks';
-// import { Users } from './Users';
+import { Users } from './Users';
 
 @Entity('books')
 export class Books {
@@ -46,7 +46,7 @@ export class Books {
   posts: Posts[];
 
   @OneToMany(() => UserBooks, (userBooks) => userBooks.book)
-  userBook: UserBooks[];
+  userBook: Promise<UserBooks[]>;
 
   @ManyToOne(() => Publishers, (publisher) => publisher.books)
   publisher: Publishers;
@@ -58,6 +58,6 @@ export class Books {
   @JoinTable()
   genres: Genres[];
 
-  // @ManyToOne((type) => Users, (user) => user.id)
-  // user_id: Users;
+  @ManyToOne((type) => Users, (user) => user.books)
+  user: Users;
 }

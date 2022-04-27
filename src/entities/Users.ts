@@ -43,11 +43,11 @@ export class Users {
   solvedTratativasAdmin: TratativaAdmin[];
 
   @OneToMany(() => UserBooks, (userBooks) => userBooks.user)
-  userBooks: UserBooks[];
+  userBooks: UserBooks;
 
   @OneToMany(() => Posts, (posts) => posts.user)
   posts: Posts[];
 
-  // @OneToMany(() => Books, (books) => books.user_id)
-  // books: Books[];
+  @OneToMany(() => Books, (books) => books.user)
+  books: Books[];
 }
