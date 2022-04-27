@@ -13,7 +13,7 @@ class AuthorsRepository implements IAuthorsRepo {
 
   saveAuthor = async (author: IAuthor) => await this.ormRepo.save(author);
 
-  findAuthor = async (name: string) => await this.ormRepo.findOne({ where: { name } });
+  findAuthor = async (name: string|void) => await this.ormRepo.findOne({ where: { name } });
 
   findAuthors = async () => await this.ormRepo.find();
 

@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
 import {
-  isAdmin,
   validateShape,
   verifyAuth,
   checkUpdateUser,
+  isAdminOrCreator,
 } from '../../middlewares';
 import { userShape, userUpdateShape } from '../../shapes';
 import {
@@ -14,6 +14,7 @@ import {
   getOneUser,
   updateUser,
 } from '../../controllers/Users';
+import { Users } from '../../entities/Users';
 
 const routesUsers = Router();
 
@@ -25,6 +26,6 @@ routesUsers.get('/:name', verifyAuth, getOneUser);
 
 routesUsers.patch('/:id', verifyAuth, validateShape(userUpdateShape), checkUpdateUser, updateUser);
 
-routesUsers.delete('/:id', verifyAuth, isAdmin, deleteUserController);
+routesUsers.delete('/:id', verifyAuth, isAdminOrCreator(Users), deleteUserController);
 
 export default routesUsers;
