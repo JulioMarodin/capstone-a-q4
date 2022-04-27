@@ -8,6 +8,7 @@ import routesGenre from './Genres';
 import routesPosts from './Posts';
 import routerLogin from './Login';
 import routesPublisher from './Publishers';
+import routesTratativaAdmin from './TratativaAdmins';
 
 const apiRouter = Router();
 
@@ -19,5 +20,6 @@ apiRouter.use('/genres', routesGenre);
 apiRouter.use('/posts', routesPosts);
 apiRouter.use('/books', routesBooks);
 apiRouter.use('/publishers', routesPublisher);
+apiRouter.use('/tratativaAdmin', routesTratativaAdmin);
 
 export default apiRouter;
