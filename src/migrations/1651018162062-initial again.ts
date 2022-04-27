@@ -1,12 +1,7 @@
-/* eslint-disable no-tabs */
-/* eslint-disable quotes */
-/* eslint-disable class-methods-use-this */
-import { MigrationInterface, QueryRunner } from "typeorm";
-import dotenv from "dotenv";
-import { hashSync } from "bcryptjs";
+import {MigrationInterface, QueryRunner} from "typeorm";
 
-export class allTables1651011719205 implements MigrationInterface {
-    name = 'allTables1651011719205';
+export class initialAgain1651018162062 implements MigrationInterface {
+    name = 'initialAgain1651018162062'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "genres" ("id" SERIAL NOT NULL, "name" character varying(128) NOT NULL, CONSTRAINT "UQ_f105f8230a83b86a346427de94d" UNIQUE ("name"), CONSTRAINT "PK_80ecd718f0f00dde5d77a9be842" PRIMARY KEY ("id"))`);
