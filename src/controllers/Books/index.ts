@@ -1,4 +1,5 @@
 import deleteBookController from './deleteBook.controller';
+import updateBookController from './updateBook.controller';
 import createBookController from './createBook.controller';
 import getBooksController from './getBooks.controller';
 import getBookController from './getBook.controller';
@@ -8,4 +9,5 @@ export {
   createBookController,
   getBooksController,
   getBookController,
+  updateBookController,
 };

@@ -7,7 +7,7 @@ import { authorShape, authorUpdateShape } from '../../shapes';
 
 const routesAuthor = Router();
 
-routesAuthor.post('', validateShape(authorShape), createAuthorController);
+routesAuthor.post('', verifyAuth, isAdmin, validateShape(authorShape), createAuthorController);
 
 routesAuthor.get('/:name', verifyAuth, getAuthor);
 

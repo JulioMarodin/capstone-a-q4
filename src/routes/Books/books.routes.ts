@@ -1,24 +1,31 @@
 import { Router } from 'express';
-
+import {
+  createBookController,
+  deleteBookController,
+  updateBookController,
+  getBooksController,
+  getBookController,
+} from '../../controllers/Books';
 import {
   isAdmin,
   verifyAuth,
   validateShape,
   checkUniqueTitleAndIsbnBook,
+  isAdminOrCreator,
 } from '../../middlewares';
-import { createBookController, deleteBookController, getBooksController } from '../../controllers/Books';
+
 import { bookShape } from '../../shapes';
-import getBookController from '../../controllers/Books/getBook.controller';
 
 const routesBooks = Router();
 
-// routesBooks.post('', verifyAuth, validateShape(bookShape), checkUniqueTitleAndIsbnBook, createBookController);
-routesBooks.post('', validateShape(bookShape), checkUniqueTitleAndIsbnBook, createBookController);
+routesBooks.post('', verifyAuth, isAdmin, validateShape(bookShape), checkUniqueTitleAndIsbnBook, createBookController);
 
 routesBooks.get('', verifyAuth, getBooksController);
 
 routesBooks.get('/:id', verifyAuth, getBookController);
 
 routesBooks.delete('/:id', verifyAuth, isAdmin, deleteBookController);
+
+routesBooks.patch('/:id', verifyAuth, isAdminOrCreator, updateBookController);
 
 export default routesBooks;
