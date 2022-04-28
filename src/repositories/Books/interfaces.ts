@@ -1,4 +1,5 @@
 import { UpdateResult, DeleteResult } from 'typeorm';
+import { IAuthor } from '../Authors/interfaces';
 
 interface IBooks {
     id?:number;
@@ -21,7 +22,7 @@ interface IbooksRepo {
     saveBook:(book:IBooks)=>void;
     findBook:(id:number)=>Promise<IBooks>;
     findBookByName:(title:string)=>Promise<IBooks>;
-    findBooks:()=>Promise<Array<IBooks>>;
+    findBooks:(title:string, page:number, limit:number)=>Promise<Array<IBooks>>;
     updateBook:(dataBook:IdataUpdateBooks, update:IdataUpdateBooks)=>Promise<UpdateResult>;
     deleteBook:(dataBook:IdataUpdateBooks)=>Promise<DeleteResult>;
 }

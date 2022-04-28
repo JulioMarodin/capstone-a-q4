@@ -11,7 +11,7 @@ const createUserController = async (req: Request, res: Response) => {
 
     return res.status(201).json(userToReturn);
   } catch (e) {
-    return res.status(400).json({ error: 'Email Already in use!' });
+    return res.status(409).json({ error: 'Email Already in use!' });
   }
 };
 
