@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { BooksRepository, PostsRepository, PostsTypesRepository } from '../../repositories';
-import { ErrorHandler } from '../../services/errors';
+import { ErrorHandler } from '../../services/errors.services';
 
 const createPost = async (req: Request, res: Response) => {
   try {

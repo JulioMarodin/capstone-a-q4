@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { getRepository } from 'typeorm';
-import { ErrorHandler } from '../services/errors';
+import { ErrorHandler } from '../services/errors.services';
 
 const isAdminOrCreator = (entity) => async (req: Request, res: Response, next: NextFunction) => {
   try {

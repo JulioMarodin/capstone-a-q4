@@ -1,7 +1,7 @@
 import { compareSync } from 'bcryptjs';
 import { AsyncControl } from '../../@types';
 import UsersRepository from '../../repositories/Users';
-import { signIn } from '../../services/user.service';
+import { signIn } from '../../services/userCreateToken.service';
 
 const userLogin: AsyncControl = async (req, res) => {
   try {

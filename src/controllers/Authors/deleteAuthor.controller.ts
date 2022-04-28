@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { DeleteResult } from 'typeorm';
 import AuthorRepository from '../../repositories/Authors';
-import { ErrorHandler } from '../../services/errors';
+import { ErrorHandler } from '../../services/errors.services';
 
 const deleteAuthor = async (req:Request, res:Response) => {
     try {
