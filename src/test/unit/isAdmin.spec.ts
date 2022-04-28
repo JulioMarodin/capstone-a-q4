@@ -27,6 +27,7 @@ describe('Test isAdmin', () => {
 
     it('Teste return 401 Unauthorized', () => {
         mockReq.user = generateUser();
+        mockReq.user.admin = false;
         isAdmin(
             mockReq as Request,
             mockRes as Response,
