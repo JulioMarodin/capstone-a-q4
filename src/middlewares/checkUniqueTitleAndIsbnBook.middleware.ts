@@ -15,14 +15,14 @@ const checkUniqueTitleAndIsbnBook = async (req: Request, res: Response, next: Ne
       throw new ErrorHandler(409, 'Title and/or isbn already registered');
     }
 
-    const bookForAuthor = await new AuthorsRepository().findAuthor(req.validated.author);
-    if (!bookForAuthor) {
+    const bookByAuthor = await new AuthorsRepository().findAuthor(req.validated.author);
+    if (!bookByAuthor) {
       const author = await new AuthorsRepository().createAuthor({ name: req.validated.author });
       await new AuthorsRepository().saveAuthor(author);
       req.validated.author = author;
       console.log(req.validated.author);
     } else {
-      req.validated.author = bookForAuthor;
+      req.validated.author = bookByAuthor;
       console.log(req.validated.author);
     }
 

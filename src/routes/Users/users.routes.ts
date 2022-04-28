@@ -15,14 +15,15 @@ import {
   updateUser,
 } from '../../controllers/Users';
 import { Users } from '../../entities/Users';
+import { paginateResult } from '../../services';
 
 const routesUsers = Router();
 
 routesUsers.post('', validateShape(userShape), createUserController);
 
-routesUsers.get('', verifyAuth, getUsers);
+routesUsers.get('', paginateResult, getUsers);
 
-routesUsers.get('/:name', verifyAuth, getOneUser);
+routesUsers.get('/:name', getOneUser);
 
 routesUsers.patch('/:id', verifyAuth, validateShape(userUpdateShape), checkUpdateUser, updateUser);
 

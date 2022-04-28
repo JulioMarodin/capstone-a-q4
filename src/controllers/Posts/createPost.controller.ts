@@ -23,8 +23,8 @@ const createPost = async (req: Request, res: Response) => {
     await new PostsRepository().savePost(post);
 
     return res.status(200).json(post);
-  } catch (error) {
-    return res.status(error.statusCode).json({ error: error.message });
+  } catch (err) {
+    return res.status(err.statusCode).json({ error: err.message });
   }
 };
 

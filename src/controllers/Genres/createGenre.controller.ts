@@ -8,8 +8,8 @@ const createGenreController = async (req: Request, res: Response) => {
     await new GenreRepository().saveGenre(genre);
 
     return res.status(201).json(genre);
-  } catch (e) {
-    return res.status(404).json({ error: e.driverError.detail });
+  } catch (err) {
+    return res.status(404).json({ error: err.driverError.detail });
   }
 };
 
