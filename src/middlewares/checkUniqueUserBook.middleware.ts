@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { getRepository } from 'typeorm';
 import { UserBooks } from '../entities/UserBooks';
 import { BooksRepository } from '../repositories';
-import { ErrorHandler } from '../services/errors';
+import { ErrorHandler } from '../services/errors.services';
 
 const checkUniqueUserBook = async (req: Request, res: Response, next: NextFunction) => {
   try {

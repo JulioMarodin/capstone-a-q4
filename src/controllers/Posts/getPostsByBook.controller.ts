@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { PostsRepository } from '../../repositories';
-import { ErrorHandler } from '../../services/errors';
+import { ErrorHandler } from '../../services/errors.services';
 import { isNumeric } from '../../utils';
 
 const getPostsByBook = async (req:Request, res:Response) => {

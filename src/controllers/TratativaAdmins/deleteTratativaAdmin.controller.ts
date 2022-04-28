@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { DeleteResult } from 'typeorm';
 import TratativaAdminRepository from '../../repositories/TratativaAdmin';
-import { ErrorHandler } from '../../services/errors';
+import { ErrorHandler } from '../../services/errors.services';
 
 const deleteTratativaAdminController = async (req:Request, res:Response) => {
   try {

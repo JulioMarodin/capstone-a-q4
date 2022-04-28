@@ -1,4 +1,4 @@
-import makeTitle from './makeTitle';
+import makeTitle from './makeTitle.utils';
 import checkEmail from './checkEmail.util';
 import isNumeric from './isNumeric.utils';
 

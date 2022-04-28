@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { BooksRepository, UserBooksRepository } from '../../repositories';
 import { updateBookToPostOrPatchUserBook } from '../../services';
-import { ErrorHandler } from '../../services/errors';
+import { ErrorHandler } from '../../services/errors.services';
 import { makeTitle } from '../../utils';
 
 const createUserBookController = async (req: Request, res: Response) => {

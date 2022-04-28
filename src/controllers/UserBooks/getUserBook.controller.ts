@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { UserBooksRepository } from '../../repositories';
 import { IData } from '../../repositories/UserBooksRepository/interfaces';
-import { ErrorHandler } from '../../services/errors';
+import { ErrorHandler } from '../../services/errors.services';
 
 const getUserBookController = async (req: Request, res: Response) => {
   try {
