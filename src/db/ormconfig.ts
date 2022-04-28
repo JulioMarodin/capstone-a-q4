@@ -34,4 +34,12 @@ const devConfig = {
   ssl: false,
 } as ConnectionOptions;
 
-export default process.env.NODE_ENV === 'production' ? prodConfig : devConfig;
+const testEnv = {
+  type: 'sqlite',
+  database: '../../dbTest.sqlite',
+  synchronize: true,
+  entities: ['./src/entities/**/*.*'],
+} as ConnectionOptions;
+
+// eslint-disable-next-line no-nested-ternary
+export default process.env.NODE_ENV === 'production' ? prodConfig : process.env.NODE_ENV === 'test' ? testEnv : devConfig;

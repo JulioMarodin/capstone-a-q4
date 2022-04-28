@@ -24,7 +24,7 @@ routesUserBooks.get('/:id', verifyAuth, getUserBookController);
 routesUserBooks.patch(
   '/:id',
   verifyAuth,
-  isAdminOrCreator,
+  isAdminOrCreator(UserBooks),
   validateShape(userBookUpdateShape),
   UpdateUserBooksController,
 );
