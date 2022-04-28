@@ -25,6 +25,7 @@ const generateUser = (): IUsers => {
         biography,
         birthday,
         city,
+        admin,
     };
 };
 
