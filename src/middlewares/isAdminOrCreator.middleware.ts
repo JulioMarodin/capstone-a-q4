@@ -7,8 +7,11 @@ const isAdminOrCreator = (entity) => async (req: Request, res: Response, next: N
     const userBook: any = await getRepository(entity).findOne(req.params.id);
     const { user } = req;
 
+    if (!userBook) {
+      throw new ErrorHandler(404, 'UserBook not found.');
+    }
     if (!user) {
-      throw new ErrorHandler(404, 'user not found.');
+      throw new ErrorHandler(404, 'User not found.');
     }
 
     if (userBook.id !== user.id && !user.admin) {

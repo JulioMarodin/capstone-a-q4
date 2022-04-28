@@ -5,6 +5,7 @@ import { AsyncMid } from '../@types';
 
 dotenv.config();
 
+// eslint-disable-next-line consistent-return
 const verifyAuth: AsyncMid = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(' ')[1];

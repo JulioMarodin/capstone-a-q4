@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { Books } from '../../entities/Books';
 import { BooksRepository } from '../../repositories';
 import { ErrorHandler } from '../../services/errors';
 
@@ -28,7 +27,7 @@ const getBooksController = async (req: Request, res: Response) => {
 
     return res.status(200).json({ reponse: await books, navigate_links: req.navlinks });
   } catch (err) {
-    return console.log(err);
+    return res.status(err.statusCode).json({ error: err.message });
   }
 };
 

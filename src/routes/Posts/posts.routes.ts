@@ -9,19 +9,20 @@ import {
   updatePost,
 } from '../../controllers/Posts';
 import { validateShape, verifyAuth } from '../../middlewares';
+import { paginateResult } from '../../services';
 import { postShape, postUpdateShape } from '../../shapes';
 
 const routesPosts = Router();
 
 routesPosts.post('', verifyAuth, validateShape(postShape), createPost);
 
-routesPosts.get('', verifyAuth, getPosts);
+routesPosts.get('', paginateResult, getPosts);
 
-routesPosts.get('/author/:author_id', verifyAuth, getPostsByAuthor);
+routesPosts.get('/author/:author_id', paginateResult, getPostsByAuthor);
 
-routesPosts.get('/book/:book_id', verifyAuth, getPostsByBook);
+routesPosts.get('/book/:book_id', paginateResult, getPostsByBook);
 
-routesPosts.get('/user/:user_id', getPostsByUser);
+routesPosts.get('/user/:user_id', paginateResult, getPostsByUser);
 
 routesPosts.patch('/:id', verifyAuth, validateShape(postUpdateShape), updatePost);
 

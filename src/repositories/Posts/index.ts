@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, ILike } from 'typeorm';
 import { Posts } from '../../entities/Posts';
 import { IdataUpdatePosts, IpostsRepo } from './interfaces';
 
@@ -15,15 +15,41 @@ class PostsRepository implements IpostsRepo {
 
   findPost = async (id: string) => await this.ormPostsRepo.findOne(id);
 
-  findPostsByAuthor = async (id: string) => await this.ormPostsRepo.find({ where: { author: { id }, visible: true } });
+  findPosts = async (description: string, page: number, limit: number) => {
+    return await this.ormPostsRepo.find({
+      relations: ['book', 'author'],
+      where: { visible: true, description: ILike(`%${description}%`) },
+      skip: page,
+      take: limit,
+      order: { create_date: 'DESC' },
+    });
+  };
 
-  findPostsByUser = async (id: string) => await this.ormPostsRepo.find({ where: { user: { id } } });
+  findPostsByAuthor = async (id: number, page: number, limit: number) => await this.ormPostsRepo.find({
+    relations: ['author', 'book'],
+    where: { author: { id }, visible: true },
+    skip: page,
+    take: limit,
+    order: { create_date: 'DESC' },
+   });
 
-  findPostsByBook = async (id: string) => await this.ormPostsRepo.find({ where: { book: { id }, visible: true } });
+  findPostsByUser = async (id: string, page: number, limit: number) => await this.ormPostsRepo.find({
+    where: { user: { id } },
+    skip: page,
+    take: limit,
+    order: { create_date: 'DESC' },
+   });
 
-  findPosts = async () => await this.ormPostsRepo.find({ where: { visible: true } });
+  findPostsByBook = async (id: number, page: number, limit: number) => await this.ormPostsRepo.find({
+    where: { book: { id }, visible: true },
+    skip: page,
+    take: limit,
+    order: { create_date: 'DESC' },
+   });
 
-  updatePost = async (dataPost: IdataUpdatePosts, update: IdataUpdatePosts) => await this.ormPostsRepo.update(dataPost, update);
+  updatePost = async (dataPost: IdataUpdatePosts, update: IdataUpdatePosts) => {
+    return await this.ormPostsRepo.update(dataPost, update);
+  };
 
   deletePost = async (dataPost: IdataUpdatePosts) => await this.ormPostsRepo.delete(dataPost);
 }

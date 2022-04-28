@@ -11,8 +11,8 @@ const getBookController = async (req: Request, res: Response) => {
     }
 
     return res.status(200).json(book);
-  } catch (e) {
-    return res.status(e.statusCode).json({ error: e.message });
+  } catch (err) {
+    return res.status(err.statusCode).json({ error: err.message });
   }
 };
 

@@ -5,12 +5,12 @@ import { ErrorHandler } from '../../services/errors';
 
 const getPostsByUser = async (req:Request, res:Response) => {
     try {
-      const posts = await new PostsRepository().findPostsByUser(req.params.user_id);
+      const posts = await new PostsRepository().findPostsByUser(req.params.user_id, req.paginate.page, req.paginate.limit);
       if (!posts) {
         throw new ErrorHandler(404, 'User or posts not found');
       }
       return res.status(200)
-      .json(paginate(posts, req.query.page, req.query.perPage));
+      .json(posts);
     } catch (err) {
       return res.status(err.statusCode).json({ error: err.message });
     }
