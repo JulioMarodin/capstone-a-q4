@@ -5,7 +5,7 @@ const userBookUpdateShape = yup.object().shape({
   reading: yup.boolean().optional(),
   want_to_read: yup.boolean().optional(),
   favorites: yup.boolean().optional(),
-  rating: yup.number().optional(),
+  rating: yup.number().optional().max(5),
   book: yup.string().optional(),
 });
 
