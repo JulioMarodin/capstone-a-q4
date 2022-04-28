@@ -11,8 +11,8 @@ import {
   verifyAuth,
   validateShape,
   checkUniqueTitleAndIsbnBook,
-  isAdminOrCreator,
 } from '../../middlewares';
+import { paginateResult } from '../../services';
 
 import { bookShape, bookUpdateShape } from '../../shapes';
 
@@ -20,9 +20,9 @@ const routesBooks = Router();
 
 routesBooks.post('', verifyAuth, validateShape(bookShape), checkUniqueTitleAndIsbnBook, createBookController);
 
-routesBooks.get('/:id', verifyAuth, getBookController);
+routesBooks.get('/:id', getBookController);
 
-routesBooks.get('', verifyAuth, getBooksController);
+routesBooks.get('', paginateResult, getBooksController);
 
 routesBooks.delete('/:id', verifyAuth, isAdmin, deleteBookController);
 

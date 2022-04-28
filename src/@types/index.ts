@@ -6,6 +6,12 @@ declare global {
     interface Request {
       user: any;
       validated: any;
+      paginate: {
+        page: number;
+        limit: number;
+        name: string;
+      };
+      navlinks: object;
     }
   }
 
