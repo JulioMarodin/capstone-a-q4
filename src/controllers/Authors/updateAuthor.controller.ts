@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 import { Request, Response } from 'express';
 import { AuthorsRepository } from '../../repositories';
-import { ErrorHandler } from '../../services/errors';
+import { ErrorHandler } from '../../services/errors.services';
 import { makeTitle } from '../../utils';
 
 const updateAuthorController = async (req: Request, res: Response) => {

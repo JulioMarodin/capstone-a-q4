@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { BooksRepository } from '../../repositories';
-import { ErrorHandler } from '../../services/errors';
+import { ErrorHandler } from '../../services/errors.services';
 
 const getBookController = async (req: Request, res: Response) => {
   try {

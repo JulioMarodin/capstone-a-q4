@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { DeleteResult } from 'typeorm';
 import PublisherRepository from '../../repositories/Publishers';
-import { ErrorHandler } from '../../services/errors';
+import { ErrorHandler } from '../../services/errors.services';
 
 const deletePublisherController = async (req:Request, res:Response) => {
   try {

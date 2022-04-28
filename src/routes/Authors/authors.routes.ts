@@ -1,7 +1,11 @@
 import { Router } from 'express';
 import { verifyAuth, isAdmin, validateShape } from '../../middlewares';
 import {
- getAuthor, deleteAuthor, createAuthorController, getAuthors, updateAuthorController,
+ getAuthor,
+ deleteAuthor,
+ createAuthorController,
+ getAuthors,
+ updateAuthorController,
 } from '../../controllers/Authors';
 import { authorShape, authorUpdateShape } from '../../shapes';
 import { paginateResult } from '../../services';
