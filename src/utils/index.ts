@@ -1,5 +1,9 @@
-import transformToTitle from './funcTitle';
-import makeTitle from './makeTitle';
+import makeTitle from './makeTitle.utils';
 import checkEmail from './checkEmail.util';
+import isNumeric from './isNumeric.utils';
 
-export { transformToTitle, makeTitle, checkEmail };
+export {
+  makeTitle,
+  checkEmail,
+  isNumeric,
+};

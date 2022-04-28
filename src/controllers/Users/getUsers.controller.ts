@@ -1,21 +1,23 @@
 import { Request, Response } from 'express';
 import { UsersRepository } from '../../repositories';
-import { IUsers } from '../../repositories/Users/interfaces';
 
-const getUsers = async (req:Request, res:Response) => {
-  const page: number = parseInt(req.params.page ?? '0', 10);
-  const limit: number = parseInt(req.params.limit ?? '15', 10);
-  const name: string = req.params.name ?? '';
+const getUsers = async (req: Request, res: Response) => {
+  try {
+    const results = await new UsersRepository().findFilteredUsers(
+      req.paginate.name,
+      req.paginate.page,
+      req.paginate.limit,
+    );
 
-  const results = await new UsersRepository().findFilteredUsers(name, page, limit);
+    const users = results.map((r) => {
+      const { password, ...user } = r;
+      return user;
+    });
 
-  const users = results.map((r) => {
-    const { password, ...user } = r;
-    return user;
-  });
-
-  return res.status(200)
-  .json(users);
+    return res.status(200).json(users);
+  } catch (err) {
+    return res.status(err.statusCode).json({ error: err.message });
+  }
 };
 
 export default getUsers;

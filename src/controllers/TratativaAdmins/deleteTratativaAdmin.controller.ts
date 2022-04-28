@@ -1,10 +1,9 @@
 import { Request, Response } from 'express';
 import { DeleteResult } from 'typeorm';
 import TratativaAdminRepository from '../../repositories/TratativaAdmin';
-import { ErrorHandler } from '../../services/errors';
+import { ErrorHandler } from '../../services/errors.services';
 
 const deleteTratativaAdminController = async (req:Request, res:Response) => {
-  // return res.status(200).json({teste: req.params});
   try {
     const tratativaAdmin: DeleteResult = await new TratativaAdminRepository().deleteTratativaAdmin(req.params);
     if (!tratativaAdmin.affected) {

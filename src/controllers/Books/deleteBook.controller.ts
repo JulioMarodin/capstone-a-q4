@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { DeleteResult } from 'typeorm';
 
 import { BooksRepository } from '../../repositories';
-import { ErrorHandler } from '../../services/errors';
+import { ErrorHandler } from '../../services/errors.services';
 
 const deleteBookController = async (req:Request, res:Response) => {
   try {
@@ -11,8 +11,8 @@ const deleteBookController = async (req:Request, res:Response) => {
       throw new ErrorHandler(404, 'Book not found');
     }
     return res.status(204).json();
-  } catch (error) {
-    return res.status(error.statusCode).json({ error: error.message });
+  } catch (err) {
+    return res.status(err.statusCode).json({ error: err.message });
   }
 };
 

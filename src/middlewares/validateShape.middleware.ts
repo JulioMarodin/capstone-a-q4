@@ -7,10 +7,12 @@ const validateShape = (shape: AnySchema) => async (req: Request, res: Response, 
       abortEarly: false,
       stripUnknown: true,
     });
+
     req.validated = validated;
+
     return next();
   } catch (e) {
-    return res.status(e.statusCode).json({ error: e.errors });
+    return res.status(400).json({ error: e.errors });
   }
 };
 

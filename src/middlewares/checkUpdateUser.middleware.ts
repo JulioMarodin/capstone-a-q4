@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { ErrorHandler } from '../services/errors';
+import { ErrorHandler } from '../services/errors.services';
 import { checkEmail } from '../utils';
 
 // Verifica se no corpo da requisição pretende-se editar a coluna admin, se houve então verifica se

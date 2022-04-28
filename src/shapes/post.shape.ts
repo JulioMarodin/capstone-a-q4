@@ -2,7 +2,6 @@ import * as yup from 'yup';
 import { makeTitle } from '../utils';
 
 const postShape = yup.object().shape({
-  visible: yup.boolean().default(() => false),
   description: yup.string().optional(),
   image: yup.string().url().optional(),
   book: yup

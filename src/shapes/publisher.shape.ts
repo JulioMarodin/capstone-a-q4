@@ -1,8 +1,8 @@
 import * as yup from 'yup';
-import { transformToTitle } from '../utils';
+import { makeTitle } from '../utils';
 
 const publisherShape = yup.object().shape({
-  name: yup.string().transform((name) => transformToTitle(name)),
+  name: yup.string().transform((name) => makeTitle(name)),
 });
 
 export default publisherShape;

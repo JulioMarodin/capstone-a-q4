@@ -7,15 +7,15 @@ import { hashSync } from "bcrypt";
 
 dotenv.config();
 
-export class createTables1651066317504 implements MigrationInterface {
-    name = 'createTables1651066317504';
+export class createTables1651187367019 implements MigrationInterface {
+    name = 'createTables1651187367019';
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "genres" ("id" SERIAL NOT NULL, "name" character varying(128) NOT NULL, CONSTRAINT "UQ_f105f8230a83b86a346427de94d" UNIQUE ("name"), CONSTRAINT "PK_80ecd718f0f00dde5d77a9be842" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "publishers" ("id" SERIAL NOT NULL, "name" character varying(128) NOT NULL, "booksId" integer, CONSTRAINT "UQ_39082806f986a63cd7dcf1782a5" UNIQUE ("name"), CONSTRAINT "PK_9d73f23749dca512efc3ccbea6a" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "post_like" ("id" SERIAL NOT NULL, "like" boolean NOT NULL DEFAULT false, "deslike" boolean NOT NULL DEFAULT false, "postId" integer, CONSTRAINT "PK_0e95caa8a8b56d7797569cf5dc6" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "posts_types" ("id" SERIAL NOT NULL, "type" character varying NOT NULL, "visible" boolean NOT NULL DEFAULT false, CONSTRAINT "UQ_78855373b2bcb1572def696e401" UNIQUE ("type"), CONSTRAINT "PK_0b6b3c1cddfd24e1fe3d9f3ac9c" PRIMARY KEY ("id"))`);
-        await queryRunner.query(`CREATE TABLE "tratativaAdmin" ("id" SERIAL NOT NULL, "sorted_out" boolean NOT NULL DEFAULT false, "description" character varying NOT NULL, "resolution" character varying NOT NULL, "endpoint" character varying NOT NULL, "originUserId" uuid, "solvedById" uuid, CONSTRAINT "PK_5d6d0127c8ec548febb2cf06d77" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TABLE "tratativaAdmin" ("id" SERIAL NOT NULL, "sorted_out" boolean NOT NULL DEFAULT false, "description" character varying NOT NULL, "resolution" character varying, "endpoint" character varying NOT NULL, "originUserId" uuid, "solvedById" uuid, CONSTRAINT "PK_5d6d0127c8ec548febb2cf06d77" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "user_books" ("id" SERIAL NOT NULL, "read" boolean NOT NULL DEFAULT false, "reading" boolean NOT NULL DEFAULT false, "want_to_read" boolean NOT NULL DEFAULT false, "favorites" boolean NOT NULL DEFAULT false, "rating" integer NOT NULL, "userId" uuid, "bookId" integer, CONSTRAINT "PK_629bc1a648860619b0f75f5dfe6" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "users" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying(128) NOT NULL, "email" character varying(128) NOT NULL, "password" character varying NOT NULL, "biography" character varying NOT NULL, "birthday" TIMESTAMP NOT NULL, "city" character varying(128) NOT NULL, "admin" boolean NOT NULL DEFAULT false, CONSTRAINT "UQ_97672ac88f789774dd47f7c8be3" UNIQUE ("email"), CONSTRAINT "PK_a3ffb1c0c8416b9fc6f907b7433" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "posts" ("id" SERIAL NOT NULL, "visible" boolean NOT NULL DEFAULT false, "create_date" TIMESTAMP NOT NULL DEFAULT now(), "update_date" TIMESTAMP NOT NULL DEFAULT now(), "description" character varying NOT NULL, "image" character varying NOT NULL, "total_like" integer NOT NULL DEFAULT '0', "total_dislike" integer NOT NULL DEFAULT '0', "userId" uuid, "bookId" integer, "typeId" integer, "authorId" integer, CONSTRAINT "PK_2829ac61eff60fcec60d7274b9e" PRIMARY KEY ("id"))`);

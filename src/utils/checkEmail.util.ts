@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm';
 import { Users } from '../entities/Users';
-import { ErrorHandler } from '../services/errors';
+import { ErrorHandler } from '../services/errors.services';
 
 const checkEmail = async (data) => {
   if (Object.keys(data).filter((e) => e === 'email').length === 1) {

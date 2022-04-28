@@ -1,11 +1,36 @@
 import { Request, Response } from 'express';
 import { PostsRepository } from '../../repositories';
-import { paginate } from '../../services';
+import { ErrorHandler } from '../../services/errors.services';
 
-const getPosts = async (req:Request, res:Response) => {
-    const posts = await new PostsRepository().findPosts();
-    return res.status(200)
-    .json(paginate(posts, req.query.page, req.query.perPage));
+const getPosts = async (req: Request, res: Response) => {
+  try {
+    const results = await new PostsRepository().findPosts(req.paginate.name, req.paginate.page, req.paginate.limit);
+    if (!results) {
+      throw new ErrorHandler(404, 'Any posts were found');
+    }
+
+    const posts: any[] = [];
+    for await (let result of results) {
+      const serializedPosts = {
+        id: result.id,
+        user: {
+          name: result.user.name,
+          id: result.user.id,
+        },
+        book: result.book.title,
+        author: result.author.name,
+        description: result.description,
+        image: result.image,
+        create_date: result.create_date,
+        update_date: result.update_date,
+      };
+      posts.push(serializedPosts);
+    }
+
+    return res.status(200).json({ response: posts, navigate_links: req.navlinks });
+  } catch (err) {
+    return res.status(err.statusCode).json({ error: err.message });
+  }
 };
 
 export default getPosts;

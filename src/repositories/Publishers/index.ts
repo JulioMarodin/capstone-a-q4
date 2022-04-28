@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, ILike } from 'typeorm';
 import { Publishers } from '../../entities/Publishers';
 import { IPublishers, IDataUpdate, IPublishersRepo } from './interfaces';
 
@@ -15,7 +15,7 @@ class PublisherRepository implements IPublishersRepo {
 
     findPublisher = async (id) => await this.ormRepo.findOne(id);
 
-    findPublisherByName = async (name: string) => await this.ormRepo.findOne({ where: { name } });
+    findPublisherByName = async (name: string) => await this.ormRepo.findOne({ where: { name: ILike(`%${name}%`) } });
 
     findPublishers = async (page: number = 0, limit: number = 20) => await this.ormRepo.find({
         skip: page,

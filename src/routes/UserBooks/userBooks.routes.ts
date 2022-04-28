@@ -16,8 +16,11 @@ import {
 import { UserBooks } from '../../entities/UserBooks';
 
 const routesUserBooks = Router();
+
 routesUserBooks.post('', verifyAuth, validateShape(userBookShape), checkUniqueUserBook, createUserBookController);
+
 routesUserBooks.get('/:id', verifyAuth, getUserBookController);
+
 routesUserBooks.patch(
   '/:id',
   verifyAuth,
@@ -25,6 +28,7 @@ routesUserBooks.patch(
   validateShape(userBookUpdateShape),
   UpdateUserBooksController,
 );
+
 routesUserBooks.delete('/:id', verifyAuth, isAdminOrCreator(UserBooks), deleteUserBookController);
 
 export default routesUserBooks;
