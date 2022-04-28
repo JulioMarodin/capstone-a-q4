@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+import supertest from 'supertest';
 import { NextFunction, Request, Response } from 'express';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { faker } from '@faker-js/faker';
