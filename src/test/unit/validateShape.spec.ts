@@ -1,10 +1,12 @@
 /* eslint-disable no-undef */
 import { NextFunction, Request, Response } from 'express';
 // eslint-disable-next-line import/no-extraneous-dependencies
+import { faker } from '@faker-js/faker';
 import {generateUser, ConnectionTest} from '..';
-import { isAdmin } from '../../middlewares';
+import { validateShape } from '../../middlewares';
+import {userShape} from '../../shapes';
 
-describe('Test isAdmin', () => {
+describe('Test validateShape', () => {
     const mockReq: Partial<Request> = {};
     const mockRes: Partial<Response> = {};
     let mockNext: Partial<NextFunction>;
@@ -25,28 +27,17 @@ describe('Test isAdmin', () => {
         mockRes.status = jest.fn().mockReturnValue(mockRes);
     });
 
-    it('Teste return 401 Unauthorized', () => {
-        mockReq.user = generateUser();
-        isAdmin(
+    it('Teste return 400', () => {
+        mockReq.body = {
+            name: faker.name.firstName().toLowerCase(),
+        };
+        validateShape(userShape)(
             mockReq as Request,
             mockRes as Response,
             mockNext as NextFunction,
         );
         expect(mockNext).toBeCalled();
         expect(mockNext).toBeCalledTimes(1);
-        expect(mockNext).toHaveBeenCalledWith(expect.objectContaining({statusCode: 401, message: 'Unauthorized'}));
-    });
-
-    it('Teste não há return', () => {
-        mockReq.user = generateUser();
-        mockReq.user.admin = true;
-        isAdmin(
-            mockReq as Request,
-            mockRes as Response,
-            mockNext as NextFunction,
-        );
-        expect(mockNext).toBeCalled();
-        expect(mockNext).toBeCalledTimes(1);
-        expect(mockNext).toHaveBeenCalledWith();
+        expect(mockNext).toBeCalledWith(expect.objectContaining({statusCode: 400, message: 'Unauthorized'}));
     });
 });
