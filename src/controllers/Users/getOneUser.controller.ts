@@ -7,7 +7,7 @@ import { dataUserBooks, dataUserPosts } from '../../services';
 const getOneUser = async (req: Request, res: Response) => {
   try {
     const user = await new UsersRepository().findUser(req.params.name);
-    console.log(user);
+
     if (!user) {
       throw new ErrorHandler(404, 'User not found');
     }
