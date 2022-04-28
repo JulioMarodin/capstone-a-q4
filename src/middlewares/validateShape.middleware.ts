@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { AnySchema } from 'yup';
 
-const validateShape = (shape: AnySchema) => async (req: Request, _res: Response, next: NextFunction) => {
+const validateShape = (shape: AnySchema) => async (req: Request, res: Response, next: NextFunction) => {
   try {
     const validated = await shape.validate(req.body, {
       abortEarly: false,
@@ -10,8 +10,7 @@ const validateShape = (shape: AnySchema) => async (req: Request, _res: Response,
     req.validated = validated;
     return next();
   } catch (e) {
-    // return res.status(e.statusCode).json({ error: e.errors });
-    return next({statusCode: 400, message: e.errors});
+    return res.status(e.statusCode).json({ error: e.errors });
   }
 };
 
