@@ -26,8 +26,6 @@ const getOneUser = async (req: Request, res: Response) => {
     const comment = userPosts.filter((item) => item.type.type === 'comentario').length;
     const notes = userPosts.filter((item) => item.type.type === 'marcacao').length;
 
-    console.log(favoritesList);
-
     if (!user) {
       throw new ErrorHandler(404, 'User not found');
     }
