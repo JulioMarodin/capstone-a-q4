@@ -8,6 +8,7 @@ interface IUsers {
     biography:string;
     birthday:Date;
     city:string;
+    admin: boolean;
 }
 
 interface IdataUpdate {
