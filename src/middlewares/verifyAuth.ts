@@ -23,7 +23,6 @@ const verifyAuth: AsyncMid = async (req, res, next) => {
       return next();
     });
   } catch (e) {
-    console.log('entrei no catch');
     return res.status(401).json({ error: 'Missing authorization headers' });
   }
 };
