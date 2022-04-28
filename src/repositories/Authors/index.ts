@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, ILike } from 'typeorm';
 import { Authors } from '../../entities/Authors';
 import { IAuthor, IAuthorsRepo, IdataUpdate } from './interfaces';
 
@@ -13,9 +13,17 @@ class AuthorsRepository implements IAuthorsRepo {
 
   saveAuthor = async (author: IAuthor) => await this.ormRepo.save(author);
 
-  findAuthor = async (name: string|void) => await this.ormRepo.findOne({ where: { name } });
+  findAuthor = async (name: string | void) => await this.ormRepo.findOne({ where: { name } });
 
-  findAuthors = async () => await this.ormRepo.find();
+  findAuthors = async (name: string, page: number, limit: number) => {
+    return await this.ormRepo.find({
+      relations: ['books'],
+      where: { name: ILike(`%${name}%`) },
+      skip: page,
+      take: limit,
+      order: { name: 'ASC' },
+    });
+  };
 
   updateAuthor = async (dataAuthor: IdataUpdate, update: IdataUpdate) => await this.ormRepo.update(dataAuthor, update);
 
