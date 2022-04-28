@@ -16,8 +16,8 @@ const checkUniqueUserBook = async (req: Request, res: Response, next: NextFuncti
     }
 
     const filterBook = listUserBooks.filter((item) => item.book.id === book.id);
-
-    if (filterBook) {
+    console.log(filterBook);
+    if (filterBook.length > 0) {
       throw new ErrorHandler(400, 'There is already a record');
     }
     return next();
