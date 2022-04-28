@@ -15,29 +15,6 @@ const checkUniqueTitleAndIsbnBook = async (req: Request, res: Response, next: Ne
       throw new ErrorHandler(409, 'Title and/or isbn already registered');
     }
 
-    const bookByAuthor = await new AuthorsRepository().findAuthor(req.validated.author);
-    if (!bookByAuthor) {
-      const author = await new AuthorsRepository().createAuthor({ name: req.validated.author });
-      await new AuthorsRepository().saveAuthor(author);
-      req.validated.author = author;
-      console.log(req.validated.author);
-    } else {
-      req.validated.author = bookByAuthor;
-      console.log(req.validated.author);
-    }
-
-    const bookForPublisher = await new PublisherRepository().findPublisherByName(req.validated.publisher);
-    if (!bookForPublisher) {
-      const publisher = await new PublisherRepository().createPublisher({ name: req.validated.publisher });
-      await new PublisherRepository().savePublisher(publisher);
-      req.validated.publisher = publisher;
-    } else {
-      req.validated.publisher = bookForPublisher;
-    }
-
-    req.validated.user = req.user;
-
-    console.log('geral', req.validated);
     return next();
   } catch (error) {
     return res.status(error.statusCode).json({ error: error.message });
