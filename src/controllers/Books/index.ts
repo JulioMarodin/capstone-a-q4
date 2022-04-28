@@ -1,13 +1,13 @@
-import deleteBookController from './deleteBook.controller';
-import updateBookController from './updateBook.controller';
 import createBookController from './createBook.controller';
-import getBooksController from './getBooks.controller';
 import getBookController from './getBook.controller';
+import getBooksController from './getBooks.controller';
+import updateBookController from './updateBook.controller';
+import deleteBookController from './deleteBook.controller';
 
 export {
-  deleteBookController,
   createBookController,
-  getBooksController,
   getBookController,
+  getBooksController,
   updateBookController,
+  deleteBookController,
 };

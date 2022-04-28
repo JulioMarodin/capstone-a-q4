@@ -11,8 +11,8 @@ const updateGenreController = async (req:Request, res:Response) => {
     }
     const genreUpdate = await new GenreRepository().findGenre(req.params.name);
     return res.status(200).json(genreUpdate);
-  } catch (error) {
-    return res.status(error.statusCode).json({ error: error.message });
+  } catch (err) {
+    return res.status(err.statusCode).json({ error: err.message });
   }
 };
 

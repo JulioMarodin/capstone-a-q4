@@ -9,8 +9,8 @@ const getGenreController = async (req: Request, res: Response) => {
       throw new ErrorHandler(404, 'Genre not found');
     }
     return res.status(200).json(genre);
-  } catch (e) {
-    return res.status(e.statusCode).json({ error: e.message });
+  } catch (err) {
+    return res.status(err.statusCode).json({ error: err.message });
   }
 };
 
