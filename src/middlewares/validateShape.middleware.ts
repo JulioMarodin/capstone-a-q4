@@ -10,7 +10,7 @@ const validateShape = (shape: AnySchema) => async (req: Request, res: Response, 
     req.validated = validated;
     return next();
   } catch (e) {
-    return res.status(400).json({ error: e.errors });
+    return res.status(e.statusCode).json({ error: e.errors });
   }
 };
 
