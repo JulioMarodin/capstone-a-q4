@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { PostsRepository } from '../../repositories';
-import { paginate } from '../../services';
 import { ErrorHandler } from '../../services/errors';
 
 const getPostsByUser = async (req:Request, res:Response) => {
