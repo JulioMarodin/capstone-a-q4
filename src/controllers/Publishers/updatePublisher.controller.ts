@@ -14,7 +14,7 @@ const updatePublisherController = async (req: Request, res: Response) => {
     if (checkPublishers) {
       throw new ErrorHandler(404, 'Publisher already exists');
     }
-    return res.status(201).json(publisher);
+    return res.status(200).json(publisher);
   } catch (error) {
     return res.status(error.statusCode).json({ error: error.message });
   }
