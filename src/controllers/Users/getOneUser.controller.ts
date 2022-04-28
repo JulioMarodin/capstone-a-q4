@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 import { UsersRepository } from '../../repositories';
-import { ErrorHandler } from '../../services/errors';
+import { ErrorHandler } from '../../services/errors.services';
 import { dataUserBooks, dataUserPosts } from '../../services';
 
 const getOneUser = async (req: Request, res: Response) => {

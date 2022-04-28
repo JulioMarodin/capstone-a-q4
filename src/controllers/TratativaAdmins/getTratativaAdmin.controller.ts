@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-
 import { TratativaAdminRepository } from '../../repositories';
 
 const getTratativaAdminController = async (req:Request, res:Response) => {

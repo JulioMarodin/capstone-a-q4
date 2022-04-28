@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { DeleteResult } from 'typeorm';
 
 import { UsersRepository } from '../../repositories';
-import { ErrorHandler } from '../../services/errors';
+import { ErrorHandler } from '../../services/errors.services';
 
 const deleteUserController = async (req: Request, res: Response) => {
   try {
