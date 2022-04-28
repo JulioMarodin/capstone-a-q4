@@ -5,6 +5,7 @@ import { AsyncMid } from '../@types';
 
 dotenv.config();
 
+// eslint-disable-next-line consistent-return
 const verifyAuth: AsyncMid = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(' ')[1];
@@ -23,7 +24,6 @@ const verifyAuth: AsyncMid = async (req, res, next) => {
       return next();
     });
   } catch (e) {
-    console.log('entrei no catch');
     return res.status(401).json({ error: 'Missing authorization headers' });
   }
 };
