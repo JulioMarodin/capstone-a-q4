@@ -1,20 +1,23 @@
 import { Request, Response } from 'express';
-import { BooksRepository, UserBooksRepository } from '../../repositories';
+import { getRepository } from 'typeorm';
+import { UserBooksRepository } from '../../repositories';
 import { updateBookToPostOrPatchUserBook } from '../../services';
+import { Users } from '../../entities/Users';
+import { Books } from '../../entities/Books';
 
 const createUserBookController = async (req: Request, res: Response) => {
   try {
     const userBook = new UserBooksRepository().createUserBooks(req.body);
-
+    const user = await getRepository(Users).findOne(userBook.user);
+    const book = await getRepository(Books).findOne(userBook.book);
     await new UserBooksRepository().saveUserBooks(userBook);
     updateBookToPostOrPatchUserBook(req.method, req.body);
 
-    const userBookToReturn = JSON.parse(JSON.stringify(userBook));
-    console.log('AQUI', userBookToReturn);
-    console.log('USERBOOK', userBook);
-    console.log('USER', req.user.name);
-    // userBookToReturn.user = req.user.name;
-    // userBookToReturn.book = book.title;
+    const userBookReturn: any = JSON.parse(JSON.stringify(userBook));
+    userBookReturn.book = book.title;
+    userBookReturn.user = user.name;
+
+    const userBookToReturn = JSON.parse(JSON.stringify(userBookReturn));
 
     return res.status(201).json(userBookToReturn);
   } catch (e) {
