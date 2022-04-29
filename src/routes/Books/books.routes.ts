@@ -26,6 +26,6 @@ routesBooks.get('', paginateResult, getBooksController);
 
 routesBooks.delete('/:id', verifyAuth, isAdmin, deleteBookController);
 
-routesBooks.patch('/:id', verifyAuth, validateShape(bookUpdateShape), updateBookController);
+routesBooks.patch('/:id', verifyAuth, isAdmin, validateShape(bookUpdateShape), updateBookController);
 
 export default routesBooks;
