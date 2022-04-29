@@ -9,14 +9,13 @@ const checkUniqueUserBook = async (req: Request, res: Response, next: NextFuncti
     const listUserBooks = await getRepository(UserBooks).find({
       where: { user: req.user.id },
     });
-    const book = await new BooksRepository().findBookByName(req.body.book);
+    const book = await new BooksRepository().findBook(req.body.book);
 
     if (!book) {
       throw new ErrorHandler(404, 'Book not found');
     }
 
     const filterBook = listUserBooks.filter((item) => item.book.id === book.id);
-    console.log(filterBook);
     if (filterBook.length > 0) {
       throw new ErrorHandler(400, 'There is already a record');
     }

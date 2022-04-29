@@ -1,13 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-undef */
 import dotenv from 'dotenv';
-import { verify } from 'jsonwebtoken';
 import supertest from 'supertest';
 import {generateUser, ConnectionTest} from '..';
 import app from '../../app';
-import { jwtConfig } from '../../configs';
-import { UsersRepository } from '../../repositories';
-import { signIn } from '../../services/user.service';
 
 dotenv.config();
 
