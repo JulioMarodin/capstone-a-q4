@@ -8,13 +8,17 @@ const isAdminOrCreator = (entity) => async (req: Request, res: Response, next: N
     const { user } = req;
 
     if (!data) {
-      throw new ErrorHandler(404, 'UserBook not found.');
+      throw new ErrorHandler(404, 'Not found.');
     }
     if (!user) {
       throw new ErrorHandler(404, 'User not found.');
     }
-
-    if (data.user.id !== user.id && !user.admin) {
+    if (req.baseUrl !== '/api/users') {
+      if (data.user.id !== user.id && !user.admin) {
+        throw new ErrorHandler(403, 'It is not possible to change the data of other users.');
+      }
+    }
+    if (data.id !== user.id && !user.admin) {
       throw new ErrorHandler(403, 'It is not possible to change the data of other users.');
     }
     return next();

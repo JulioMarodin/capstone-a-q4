@@ -42,7 +42,7 @@ export class Books {
   @Column()
   number_pages: number;
 
-  @OneToMany(() => Posts, (post) => post.book)
+  @OneToMany(() => Posts, (post) => post.book, {eager: true})
   posts: Posts[];
 
   @OneToMany(() => UserBooks, (userBooks) => userBooks.book)
@@ -56,7 +56,7 @@ export class Books {
 
   @ManyToMany(() => Genres, (genres) => genres.books)
   @JoinTable()
-  genres: Genres[];
+  genres: Promise<Genres[]>;
 
   @ManyToOne((type) => Users, (user) => user.books)
   user: Users;

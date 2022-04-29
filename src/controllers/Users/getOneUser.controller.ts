@@ -23,7 +23,6 @@ const getOneUser = async (req: Request, res: Response) => {
 
     return res.status(200).json({user: responseUser, relationalBooks, relationalPosts});
   } catch (err) {
-    console.log(err);
     return res.status(err.statusCode).json({ error: err.message });
   }
 };
