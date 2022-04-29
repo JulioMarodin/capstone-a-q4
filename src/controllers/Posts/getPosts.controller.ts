@@ -10,7 +10,8 @@ const getPosts = async (req: Request, res: Response) => {
     }
 
     const posts: any[] = [];
-    for await (let result of results) {
+    // eslint-disable-next-line no-restricted-syntax
+    for await (const result of results) {
       const serializedPosts = {
         id: result.id,
         user: {
