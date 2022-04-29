@@ -81,7 +81,7 @@ describe('Errors in routes User and Login', () => {
         await new ConnectionTest().clear();
     });
 
-    it('Teste create User return status 400', async () => {
+    it('Teste create User return status 409', async () => {
         const user = generateUser();
         await supertest(app)
         .post('/api/users')
@@ -90,6 +90,6 @@ describe('Errors in routes User and Login', () => {
         const resp = await supertest(app)
         .post('/api/users')
         .send(user);
-        expect(resp.status).toBe(400);
+        expect(resp.status).toBe(409);
     });
 });
