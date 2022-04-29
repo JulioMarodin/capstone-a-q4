@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import AuthorsRepository from '../../repositories/Authors/index';
-import { ErrorHandler } from '../../services/errors';
+import { ErrorHandler } from '../../services/errors.services';
 import { makeTitle } from '../../utils';
 
 const getAuthor = async (req: Request, res: Response) => {

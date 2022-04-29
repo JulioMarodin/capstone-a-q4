@@ -3,7 +3,7 @@ import { getRepository } from 'typeorm';
 import { Books } from '../entities/Books';
 import { AuthorsRepository, GenreRepository, PublisherRepository } from '../repositories';
 import { IGenres } from '../repositories/Genres/interfaces';
-import { ErrorHandler } from '../services/errors';
+import { ErrorHandler } from '../services/errors.services';
 import { makeTitle } from '../utils';
 
 const checkUniqueTitleAndIsbnBook = async (req: Request, res: Response, next: NextFunction) => {

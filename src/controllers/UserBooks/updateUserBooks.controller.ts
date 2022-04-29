@@ -1,9 +1,8 @@
 /* eslint-disable prefer-const */
 import { Request, Response } from 'express';
-import { updateBookToPostOrPatchUserBook } from '../../services';
+import { updateBookToPostOrPatchUserBook, ErrorHandler } from '../../services';
 import { BooksRepository, UserBooksRepository } from '../../repositories';
 import { IData } from '../../repositories/UserBooksRepository/interfaces';
-import { ErrorHandler } from '../../services/errors';
 import { makeTitle } from '../../utils';
 
 const UpdateUserBooksController = async (req: Request, res: Response) => {

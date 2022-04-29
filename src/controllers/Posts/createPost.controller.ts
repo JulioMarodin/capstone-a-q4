@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { BooksRepository, PostsRepository, PostsTypesRepository } from '../../repositories';
-import { ErrorHandler } from '../../services/errors';
+import { ErrorHandler } from '../../services/errors.services';
 
 const createPost = async (req: Request, res: Response) => {
   try {
-    const book = await new BooksRepository().findBookByName(req.validated.book);
+    const book = await new BooksRepository().findBook(req.validated.book);
     if (!book) {
       throw new ErrorHandler(404, 'Book not found');
     }

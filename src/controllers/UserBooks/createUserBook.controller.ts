@@ -1,14 +1,12 @@
 import { Request, Response } from 'express';
 import { BooksRepository, UserBooksRepository } from '../../repositories';
 import { updateBookToPostOrPatchUserBook } from '../../services';
-import { ErrorHandler } from '../../services/errors';
 import { makeTitle } from '../../utils';
 
 const createUserBookController = async (req: Request, res: Response) => {
   try {
     const userBook = new UserBooksRepository().createUserBooks(req.validated);
-    const bookReceived = makeTitle(req.body.book);
-    const book = await new BooksRepository().findBookByName(bookReceived);
+    const book = await new BooksRepository().findBook(userBook.book.id);
 
     userBook.user = req.user.id;
     userBook.book = book;

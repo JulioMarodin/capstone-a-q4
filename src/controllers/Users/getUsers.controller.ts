@@ -14,7 +14,7 @@ const getUsers = async (req: Request, res: Response) => {
       return user;
     });
 
-    return res.status(200).json(users);
+    return res.status(200).json({ response: users, navigate_links: req.navlinks });
   } catch (err) {
     return res.status(err.statusCode).json({ error: err.message });
   }

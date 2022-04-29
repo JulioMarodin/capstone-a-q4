@@ -1,7 +1,7 @@
 import express, {
  json, NextFunction, Request, Response,
 } from 'express';
-import { handleError } from './services/errors';
+import { handleError } from './services/errors.services';
 import apiRouter from './routes';
 
 const app = express();
