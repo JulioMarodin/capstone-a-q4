@@ -8,7 +8,6 @@ const createBookController = async (req: Request, res: Response) => {
     await createAuthorIfNotExists(req);
     await createPublisherIfNotExists(req);
     req.validated.user = req.user;
-
     const book = new BooksRepository().createBook(req.validated);
     await new BooksRepository().saveBook(book);
     const bookToReturn = JSON.parse(JSON.stringify(book));

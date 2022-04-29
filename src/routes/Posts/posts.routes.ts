@@ -8,9 +8,10 @@ import {
   getPostsByUser,
   updatePost,
 } from '../../controllers/Posts';
-import { validateShape, verifyAuth } from '../../middlewares';
+import { validateShape, verifyAuth, isAdminOrCreator } from '../../middlewares';
 import { paginateResult } from '../../services';
 import { postShape, postUpdateShape } from '../../shapes';
+import { Posts } from '../../entities/Posts';
 
 const routesPosts = Router();
 
@@ -24,7 +25,7 @@ routesPosts.get('/book/:book_id', paginateResult, getPostsByBook);
 
 routesPosts.get('/user/:user_id', paginateResult, getPostsByUser);
 
-routesPosts.patch('/:id', verifyAuth, validateShape(postUpdateShape), updatePost);
+routesPosts.patch('/:id', verifyAuth, isAdminOrCreator(Posts), validateShape(postUpdateShape), updatePost);
 
 routesPosts.delete('/:id', verifyAuth, deletePost);
 
