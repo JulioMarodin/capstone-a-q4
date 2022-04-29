@@ -25,7 +25,7 @@ routesUsers.get('', paginateResult, getUsers);
 
 routesUsers.get('/:name', getOneUser);
 
-routesUsers.patch('/:id', verifyAuth, validateShape(userUpdateShape), checkUpdateUser, updateUser);
+routesUsers.patch('/:id', verifyAuth, isAdminOrCreator(Users), validateShape(userUpdateShape), checkUpdateUser, updateUser);
 
 routesUsers.delete('/:id', verifyAuth, isAdminOrCreator(Users), deleteUserController);
 
