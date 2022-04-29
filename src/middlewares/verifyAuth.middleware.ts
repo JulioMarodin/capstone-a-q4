@@ -17,11 +17,12 @@ const verifyAuth: AsyncMid = async (req, res, next) => {
     if (err) {
       return res.status(401).json({ error: 'Invalid acess token' });
     }
+
     const { id } = decoded as any;
 
-      // eslint-disable-next-line new-cap
-      req.user = await new usersRepository().findUserToId(id);
-      return next();
+    // eslint-disable-next-line new-cap
+    req.user = await new usersRepository().findUserToId(id);
+    return next();
     });
   } catch (e) {
     return res.status(401).json({ error: 'Missing authorization headers' });
