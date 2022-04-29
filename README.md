@@ -1136,4 +1136,139 @@ Exemplo de resposta:
 
 ## Endpoints em Tratativa-Admin
 
-doc em construção
+
+### POST - **AUTH              /tratativaAdmin
+
+Rota insere uma editora no banco de dados.
+
+| CHAVES | VALORES | OBRIGATORIEDADE |
+| --- | --- | --- |
+| description | string | X |
+| endpoint | string | X |
+
+Exemplo de requisição:
+
+```json
+{
+	"description": "Deletar o livro tal",
+  "endpoint": "/book/123"
+}
+```
+
+exemplo de resposta
+
+```json
+201 - CREATED
+{
+	"description": "Deletar o livro tal",
+	"endpoint": "/book/123",
+	"origin_user": "e497528a-e24a-4b35-9f35-dc3748e58bf7",
+	"resolution": null,
+	"id": 1,
+	"sorted_out": false
+}
+```
+
+
+### GET - **AUTH *Admin         /tratativaAdmin/
+Entrega as tratativas não resolvidas pelos administradores.
+Não tem corpo na requisição.
+Exemplo de resposta
+```json
+[
+	{
+		"id": 1,
+		"sorted_out": false,
+		"description": "Deletar o livro tal",
+		"resolution": null,
+		"endpoint": "/book/123"
+	},
+  {
+		"id": 2,
+		"sorted_out": true,
+		"description": "Deletar o livro tal",
+		"resolution": "livro deletado",
+		"endpoint": "/book/123"
+	},
+  ...
+]
+```
+
+### GET - **AUTH *Admin         /tratativaAdmin/notRead
+Entrega as tratativas não resolvidas pelos administradores.
+Não tem corpo na requisição.
+Exemplo de resposta
+```json
+[
+	{
+		"id": 1,
+		"sorted_out": false,
+		"description": "Deletar o livro tal",
+		"resolution": null,
+		"endpoint": "/book/123"
+	},
+  ...
+]
+```
+
+
+### GET - **AUTH *Admin         /tratativaAdmin/read
+Entrega as tratativas resolvidas pelos administradores.
+Não tem corpo na requisição.
+Exemplo de resposta
+```json
+[
+	{
+		"id": 1,
+		"sorted_out": true,
+		"description": "Deletar o livro tal",
+		"resolution": null,
+		"endpoint": "/book/123"
+	}
+]
+```
+
+
+### GET - **AUTH *Admin         /tratativaAdmin/:id
+Entrega a tratativa especificada no id.
+Não tem corpo na requisição
+Exemplo de resposta
+```json
+{
+	"id": 1,
+	"sorted_out": false,
+	"description": "Deletar o livro tal",
+	"resolution": null,
+	"endpoint": "/book/123"
+}
+```
+
+### PATCH - **AUTH **Admin     /tratativaAdmin/:read
+
+É necessário o id da relação para atualizar as informações.
+
+| CHAVES | VALORES | OBRIGATORIEDADE |
+| --- | --- | --- |
+| description | string |  |
+| endpoint | string |  |
+| resoluton | string |  |
+| sorted_out | boolean |  |
+
+
+Exemplo da requisição
+```json
+{
+	"sorted_out": true
+}
+```
+
+Exemplo de resposta
+
+```json
+200 - OK
+{
+	"generatedMaps": [],
+	"raw": [],
+	"affected": 1
+}
+```
