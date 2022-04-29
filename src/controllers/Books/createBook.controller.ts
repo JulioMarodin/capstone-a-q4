@@ -5,8 +5,8 @@ import { createAuthorIfNotExists, createPublisherIfNotExists } from '../../servi
 
 const createBookController = async (req: Request, res: Response) => {
   try {
-    createAuthorIfNotExists(req);
-    createPublisherIfNotExists(req);
+    await createAuthorIfNotExists(req);
+    await createPublisherIfNotExists(req);
     req.validated.user = req.user;
 
     const book = new BooksRepository().createBook(req.validated);
