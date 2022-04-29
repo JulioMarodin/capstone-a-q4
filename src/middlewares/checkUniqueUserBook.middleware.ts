@@ -7,10 +7,9 @@ import { ErrorHandler } from '../services/errors.services';
 const checkUniqueUserBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const listUserBooks = await getRepository(UserBooks).find({
-      where: { user: req.user.id },
+      where: { user: req.body.user },
     });
     const book = await new BooksRepository().findBook(req.body.book);
-
     if (!book) {
       throw new ErrorHandler(404, 'Book not found');
     }
