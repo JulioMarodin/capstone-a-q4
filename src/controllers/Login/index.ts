@@ -17,9 +17,10 @@ const userLogin: AsyncControl = async (req, res) => {
       return res.status(400).json({ error: 'E-mail and password missmatch' });
     }
 
-    req.body.id = user.id as string;
-
-    const token = signIn(req.body);
+    const token = signIn({
+      email: req.validated.email,
+      id: user.id as string,
+    });
 
     return res.status(200).json({ token });
   } catch (err) {

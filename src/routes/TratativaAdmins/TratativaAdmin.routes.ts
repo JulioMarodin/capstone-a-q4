@@ -5,7 +5,7 @@ import {
   verifyAuth,
   isAdmin,
 } from '../../middlewares';
-import { tratativaAdminShape } from '../../shapes';
+import { tratativaAdminShape, tratativaAdminUpdateShape } from '../../shapes';
 import {
   createTratativaAdminController,
   deleteTratativaAdminController,
@@ -30,6 +30,6 @@ routesTratativaAdmin.get('', verifyAuth, isAdmin, getAllTratativaAdminController
 
 routesTratativaAdmin.delete('/:id', verifyAuth, isAdmin, deleteTratativaAdminController);
 
-routesTratativaAdmin.patch('/:id', verifyAuth, isAdmin, validateShape(tratativaAdminShape), updateTratativaAdminController);
+routesTratativaAdmin.patch('/:id', verifyAuth, isAdmin, validateShape(tratativaAdminUpdateShape), updateTratativaAdminController);
 
 export default routesTratativaAdmin;

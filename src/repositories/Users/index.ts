@@ -23,9 +23,7 @@ class UsersRepository implements IusersRepo {
     where: { email },
   });
 
-  findUserToId = async (id: string) => await this.ormRepo.findOne({
-    where: { id },
-   });
+  findUserToId = async (id) => await this.ormRepo.findOne({ id });
 
   findUsers = async (page: number = 0, limit: number = 15) => await this.ormRepo.find({
       skip: page,
